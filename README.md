@@ -1,16 +1,14 @@
 # destine_app
+# 🎓 DestineApp - Learning Management System
 
-A new Flutter project.
+**DestineApp** is a powerful, user-friendly Learning Management System (LMS) designed to help educators and organizations deliver and manage high-quality educational content. With built-in course selection, quizzes, and a flexible subscription model, DestineApp makes it easy to create engaging learning experiences for students and professionals alike.
 
-## Getting Started
+---
 
-This project is a starting point for a Flutter application.
+## 🚀 Features
 
-A few resources to get you started if this is your first Flutter project:
+- 📚 **Course Management**  
+  User can enroll in courses
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+- 🧠 **Quiz System**  
+  Users can test their knowledge with quizzes after completing lessons.
