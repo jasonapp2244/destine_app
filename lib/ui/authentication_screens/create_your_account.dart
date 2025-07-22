@@ -1,3 +1,5 @@
+import 'package:destine_app/constants/colors.dart';
+import 'package:destine_app/constants/paddings.dart';
 import 'package:destine_app/ui/authentication_screens/login_screen.dart';
 import 'package:destine_app/widgets/custom_button.dart';
 import 'package:destine_app/widgets/custom_divider.dart';
@@ -8,15 +10,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
-class RegistrationScreen extends StatelessWidget {
-  const RegistrationScreen({super.key});
+class CreateYourAccountScreen extends StatelessWidget {
+  const CreateYourAccountScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xfffF5F5F5),
+      backgroundColor: secondaryColor,
       body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 16.w),
+        padding: EdgeInsets.symmetric(horizontal: horizontalPadding.w),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -47,7 +49,7 @@ class RegistrationScreen extends StatelessWidget {
     return Text(
       'Create Your Account!',
       style: TextStyle(
-        color: const Color(0xff0F1011),
+        color: textColor,
         fontWeight: FontWeight.w600,
         fontSize: 28.sp,
       ),
@@ -58,7 +60,7 @@ class RegistrationScreen extends StatelessWidget {
     return Text(
       'Create your account to explore about our app',
       style: TextStyle(
-        color: const Color(0xff0F1011),
+        color: textColor,
         fontWeight: FontWeight.w400,
         fontSize: 12.sp,
       ),
@@ -84,7 +86,7 @@ class RegistrationScreen extends StatelessWidget {
           child: Text(
             'Remember Me',
             style: TextStyle(
-              color: const Color(0xff0F1011),
+              color: textColor,
               fontWeight: FontWeight.w700,
               fontSize: 12.sp,
             ),
@@ -104,7 +106,7 @@ class RegistrationScreen extends StatelessWidget {
   }
 
   Widget _buildOrDivider() {
-    return OrDivider(text: 'OR', lineColor: const Color(0xff0F10111A));
+    return OrDivider(text: 'OR', lineColor: dividerColor);
   }
 
   Widget _buildLoginPrompt(BuildContext context) {
@@ -118,18 +120,17 @@ class RegistrationScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Container(
-              color: const Color(0xFF8CA4D4),
               padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 4.h),
               child: RichText(
                 text: TextSpan(
                   text: 'Already have an account? ',
-                  style: TextStyle(color: Colors.black, fontSize: 12.sp),
+                  style: TextStyle(color: primaryColor, fontSize: 12.sp),
                   children: [
                     TextSpan(
                       text: 'login here',
                       style: TextStyle(
                         fontWeight: FontWeight.w700,
-                        color: Colors.black,
+                        color: textColor,
                         fontSize: 12.sp,
                       ),
                     ),

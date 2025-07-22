@@ -1,3 +1,5 @@
+import 'package:destine_app/routes/apppages.dart';
+import 'package:destine_app/routes/routes.dart';
 import 'package:destine_app/ui/authentication_screens/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/material.dart';
@@ -29,7 +31,8 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: const LoginScreen(),
+      initialRoute: AppRoutes.login,
+      getPages: AppPages.pages,
     );
   }
 }

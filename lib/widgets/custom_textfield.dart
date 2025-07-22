@@ -1,3 +1,4 @@
+import 'package:destine_app/constants/colors.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter/material.dart';
@@ -37,7 +38,7 @@ class CustomTextField extends StatelessWidget {
               style: TextStyle(fontSize: 14),
               decoration: InputDecoration(
                 hintText: hintText,
-                hintStyle: TextStyle(color: Color(0xff0F1011), fontSize: 14),
+                hintStyle: TextStyle(color: textColor, fontSize: 14),
                 border: InputBorder.none,
                 isCollapsed: true,
                 contentPadding: EdgeInsets.zero,

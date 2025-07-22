@@ -1,68 +1,33 @@
+import 'package:destine_app/constants/colors.dart';
+import 'package:destine_app/constants/paddings.dart';
+import 'package:destine_app/controllers/choose_your_role_controller.dart';
 import 'package:destine_app/widgets/custom_button.dart';
+import 'package:destine_app/widgets/custom_role_option_card.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class ChooseRoleScreen extends StatefulWidget {
-  const ChooseRoleScreen({super.key});
-
-  @override
-  _ChooseRoleScreenState createState() => _ChooseRoleScreenState();
-}
-
-class _ChooseRoleScreenState extends State<ChooseRoleScreen> {
-  String selectedRole = 'Nursing Student';
+class ChooseRoleScreen extends StatelessWidget {
+  final _chooseRoleController = Get.find<ChooseYourRoleController>();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xfffF5F5F5),
-      appBar: AppBar(
-        elevation: 0,
-        backgroundColor: Color(0xfffF5F5F5),
-
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back, color: Colors.black),
-          onPressed: () {
-            Navigator.pop(context);
-          },
-        ),
-      ),
+      backgroundColor: secondaryColor,
+      appBar: _buildAppBar(context),
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20),
+        padding: EdgeInsets.symmetric(horizontal: horizontalPadding.w),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             SizedBox(height: 93.h),
-            Text(
-              'Choose Your Role',
-              style: TextStyle(
-                color: Color(0xff0F1011),
-                fontWeight: FontWeight.w600,
-                fontSize: 28.sp, // scaled font size
-              ),
-            ),
-            SizedBox(height: 8),
-            Text(
-              'We’ll customize your experience based on your selected path.',
-              style: TextStyle(
-                color: Color(0xff0F1011),
-                fontWeight: FontWeight.w400,
-                fontSize: 12.sp,
-              ),
-            ),
-            SizedBox(height: 100),
-
-            // Role options
-            _roleOption('Nursing Student'),
-            SizedBox(height: 12),
-            _roleOption('Physician Assistant (PA) Student'),
-
+            _buildTitleText(),
+            SizedBox(height: 8.h),
+            _buildSubtitleText(),
+            SizedBox(height: 100.h),
+            _buildRoleOptions(),
             Spacer(),
-
-            // Next button
-            CustomButton(text: 'Next', onPressed: () {}),
-
+            _buildNextButton(),
             SizedBox(height: 20),
           ],
         ),
@@ -70,59 +35,87 @@ class _ChooseRoleScreenState extends State<ChooseRoleScreen> {
     );
   }
 
-  Widget _roleOption(String roleName) {
-    bool isSelected = selectedRole == roleName;
-    return GestureDetector(
-      onTap: () {
-        setState(() {
-          selectedRole = roleName;
-        });
-      },
-      child: Container(
-        height: 46,
-        padding: EdgeInsets.symmetric(horizontal: 20),
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(30),
-          border: Border.all(
-            color: isSelected ? Color(0xFF8C8AF8) : Colors.transparent,
-            width: 2,
-          ),
-          boxShadow: isSelected
-              ? [
-                  BoxShadow(
-                    color: Color(0x668C8AF8),
-                    blurRadius: 8,
-                    offset: Offset(0, 2),
-                  ),
-                ]
-              : [],
-        ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text(
-              roleName,
-              style: TextStyle(
-                fontWeight: FontWeight.w600,
-                fontSize: 12,
-                color: Colors.black,
-              ),
-            ),
-            if (isSelected)
-              Container(
-                height: 20,
-                width: 20,
-                decoration: BoxDecoration(
-                  color: Color(0xFF8C8AF8),
-                  shape: BoxShape.circle,
-                ),
-                padding: EdgeInsets.all(4),
-                child: Icon(Icons.check, size: 12, color: Colors.white),
-              ),
-          ],
-        ),
+  /// AppBar with back button
+  AppBar _buildAppBar(BuildContext context) {
+    return AppBar(
+      elevation: 0,
+      backgroundColor: secondaryColor,
+      leading: IconButton(
+        icon: Icon(Icons.arrow_back, color: textColor),
+        onPressed: () {
+          Navigator.pop(context);
+        },
       ),
+    );
+  }
+
+  /// Main heading text
+  Widget _buildTitleText() {
+    return Text(
+      'Choose Your Role',
+      style: TextStyle(
+        color: textColor,
+        fontWeight: FontWeight.w600,
+        fontSize: 28.sp,
+      ),
+    );
+  }
+
+  /// Subtitle text
+  Widget _buildSubtitleText() {
+    return Text(
+      'We’ll customize your experience based on your selected path.',
+      style: TextStyle(
+        color: textColor,
+        fontWeight: FontWeight.w400,
+        fontSize: 12.sp,
+      ),
+    );
+  }
+
+  /// List of role option cards
+  Widget _buildRoleOptions() {
+    return Column(
+      children: [
+        Obx(
+          () => CustomRoleOptionTileCard(
+            roleName: 'Nursing Student',
+            isSelected:
+                _chooseRoleController.selectedRoleValue.value ==
+                'Nursing Student',
+            onTap: () {
+              _chooseRoleController.selectedRoleValue.value = 'Nursing Student';
+            },
+            primaryColor: primaryColor,
+            textColor: textColor,
+          ),
+        ),
+        SizedBox(height: 12),
+        Obx(
+          () => CustomRoleOptionTileCard(
+            roleName: 'Physician Assistant (PA) Student',
+            isSelected:
+                _chooseRoleController.selectedRoleValue.value ==
+                'Physician Assistant (PA) Student',
+            onTap: () {
+              _chooseRoleController.selectedRoleValue.value =
+                  'Physician Assistant (PA) Student';
+            },
+            primaryColor: primaryColor,
+            textColor: textColor,
+          ),
+        ),
+      ],
+    );
+  }
+
+  /// Next button
+  Widget _buildNextButton() {
+    return CustomButton(
+      text: 'Next',
+      onPressed: () {
+        // Add navigation or logic here
+      },
     );
   }
 }

@@ -1,5 +1,8 @@
+import 'package:destine_app/constants/colors.dart';
+import 'package:destine_app/constants/paddings.dart';
+import 'package:destine_app/routes/routes.dart';
 import 'package:destine_app/ui/authentication_screens/choose_your_role.dart';
-import 'package:destine_app/ui/authentication_screens/registration_screen.dart';
+import 'package:destine_app/ui/authentication_screens/create_your_account.dart';
 import 'package:destine_app/widgets/custom_button.dart';
 import 'package:destine_app/widgets/custom_divider.dart';
 import 'package:destine_app/widgets/custom_radiobutton.dart';
@@ -15,9 +18,9 @@ class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xfffF5F5F5),
+      backgroundColor: secondaryColor,
       body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 16.w),
+        padding: EdgeInsets.symmetric(horizontal: horizontalPadding.w),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -48,7 +51,7 @@ class LoginScreen extends StatelessWidget {
     return Text(
       'Welcome Back!',
       style: TextStyle(
-        color: const Color(0xff0F1011),
+        color: textColor,
         fontWeight: FontWeight.w600,
         fontSize: 28.sp,
       ),
@@ -59,7 +62,7 @@ class LoginScreen extends StatelessWidget {
     return Text(
       'Log in to explore about our app',
       style: TextStyle(
-        color: const Color(0xff0F1011),
+        color: textColor,
         fontWeight: FontWeight.w400,
         fontSize: 12.sp,
       ),
@@ -84,7 +87,7 @@ class LoginScreen extends StatelessWidget {
           child: Text(
             'Remember Me',
             style: TextStyle(
-              color: const Color(0xff0F1011),
+              color: textColor,
               fontWeight: FontWeight.w700,
               fontSize: 12.sp,
             ),
@@ -93,7 +96,7 @@ class LoginScreen extends StatelessWidget {
         Text(
           'Forget Password?',
           style: TextStyle(
-            color: const Color(0xff0F1011),
+            color: textColor,
             fontWeight: FontWeight.bold,
             fontSize: 12.sp,
           ),
@@ -106,19 +109,19 @@ class LoginScreen extends StatelessWidget {
     return CustomButton(
       text: 'Login',
       onPressed: () {
-        Get.to(() => const ChooseRoleScreen());
+        Get.toNamed(AppRoutes.chooseRole);
       },
     );
   }
 
   Widget _buildOrDivider() {
-    return OrDivider(text: 'OR', lineColor: const Color(0xff0F10111A));
+    return OrDivider(text: 'OR', lineColor: secondaryColor);
   }
 
   Widget _buildSignupPrompt(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Get.to(() => const RegistrationScreen());
+        Get.toNamed(AppRoutes.chooseRole);
       },
       child: Padding(
         padding: EdgeInsets.only(bottom: 16.h),
@@ -126,18 +129,17 @@ class LoginScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Container(
-              color: const Color(0xFF8CA4D4),
               padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 4.h),
               child: RichText(
                 text: TextSpan(
                   text: 'New here? ',
-                  style: TextStyle(color: Colors.black, fontSize: 12.sp),
+                  style: TextStyle(color: textColor, fontSize: 12.sp),
                   children: [
                     TextSpan(
                       text: 'Create an account',
                       style: TextStyle(
                         fontWeight: FontWeight.w700,
-                        color: Colors.black,
+                        color: textColor,
                         fontSize: 12.sp,
                       ),
                     ),

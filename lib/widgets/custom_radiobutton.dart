@@ -1,3 +1,4 @@
+import 'package:destine_app/constants/colors.dart';
 import 'package:flutter/material.dart';
 
 class CustomRadio extends StatelessWidget {
@@ -16,8 +17,8 @@ class CustomRadio extends StatelessWidget {
         height: 17,
         decoration: BoxDecoration(
           shape: BoxShape.circle,
-          color: isSelected ? Color(0xff7E7EFF) : Colors.transparent,
-          border: Border.all(color: Color(0xff7E7EFF), width: 2),
+          color: isSelected ? primaryColor : Colors.transparent,
+          border: Border.all(color: primaryColor, width: 2),
         ),
         child: Center(
           child: Container(

@@ -1,3 +1,4 @@
+import 'package:destine_app/constants/colors.dart';
 import 'package:flutter/material.dart';
 
 class OrDivider extends StatelessWidget {
@@ -29,7 +30,7 @@ class OrDivider extends StatelessWidget {
           style:
               textStyle ??
               TextStyle(
-                color: Color(0xff0F1011),
+                color: textColor,
                 fontWeight: FontWeight.w400,
                 fontSize: 14,
               ),

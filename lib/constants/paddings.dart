@@ -1,0 +1,1 @@
+double horizontalPadding = 16;
