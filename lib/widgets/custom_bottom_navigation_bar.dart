@@ -1,97 +1,71 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
+import 'package:responsive_navigation_bar/responsive_navigation_bar.dart';
 
-class CustomBottomNavBar extends StatelessWidget {
-  final int currentIndex;
-  final Function(int) onTap;
+///
+class CustomBottomNavigationBar extends StatefulWidget {
+  ///
+  const CustomBottomNavigationBar({Key? key}) : super(key: key);
 
-  const CustomBottomNavBar({
-    super.key,
-    required this.currentIndex,
-    required this.onTap,
-  });
+  @override
+  State<CustomBottomNavigationBar> createState() =>
+      _CustomBottomNavigationBarState();
+}
+
+class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
+  int _selectedIndex = 0;
+
+  void changeTab(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.all(16),
-      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-      decoration: BoxDecoration(
-        color: const Color(0xFF7B61FF),
-        borderRadius: BorderRadius.circular(40),
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: [
-          _buildNavItem(
-            index: 0,
-            icon: Icons.home_rounded,
-            label: 'Home',
-            isSelected: currentIndex == 0,
+    return MaterialApp(
+      home: Scaffold(
+        // extendBody: true,
+        bottomNavigationBar: ResponsiveNavigationBar(
+          backgroundColor: Color(0xff7E7EFF),
+          activeIconColor: Color(0xff7E7EFF),
+          showActiveButtonText: true,
+          selectedIndex: _selectedIndex,
+          onTabChange: changeTab,
+
+          // showActiveButtonText: false,
+          textStyle: const TextStyle(
+            color: Color(0xff7E7EFF),
+            fontWeight: FontWeight.bold,
           ),
-          _buildNavItem(
-            index: 1,
-            icon: Icons.menu_book_rounded,
-            isSelected: currentIndex == 1,
-          ),
-          _buildNavItem(
-            index: 2,
-            icon: Icons.assignment_rounded,
-            isSelected: currentIndex == 2,
-          ),
-          _buildNavItem(
-            index: 3,
-            icon: Icons.person_outline_rounded,
-            isSelected: currentIndex == 3,
-          ),
-        ],
+          navigationBarButtons: const <NavigationBarButton>[
+            NavigationBarButton(
+              text: 'Tab 1',
+              icon: Icons.people,
+
+              backgroundGradient: LinearGradient(
+                colors: [Colors.white, Colors.white, Colors.white],
+              ),
+            ),
+            NavigationBarButton(
+              text: 'Tab 2',
+              icon: Icons.people,
+
+              backgroundGradient: LinearGradient(
+                colors: [Colors.white, Colors.white, Colors.white],
+              ),
+            ),
+            NavigationBarButton(
+              text: 'Tab 3',
+              icon: Icons.people,
+
+              backgroundGradient: LinearGradient(
+                colors: [Colors.white, Colors.white, Colors.white],
+              ),
+            ),
+          ],
+        ),
       ),
     );
-  }
-
-  Widget _buildNavItem({
-    required int index,
-    required IconData icon,
-    String? label,
-    required bool isSelected,
-  }) {
-    if (isSelected && label != null) {
-      return GestureDetector(
-        onTap: () => onTap(index),
-        child: Container(
-          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-          decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(30),
-          ),
-          child: Row(
-            children: [
-              Icon(icon, color: Color(0xFF7B61FF), size: 20),
-              const SizedBox(width: 6),
-              Text(
-                label,
-                style: const TextStyle(
-                  color: Color(0xFF7B61FF),
-                  fontWeight: FontWeight.bold,
-                  fontSize: 13,
-                ),
-              ),
-            ],
-          ),
-        ),
-      );
-    } else {
-      return GestureDetector(
-        onTap: () => onTap(index),
-        child: Container(
-          width: 40,
-          height: 40,
-          decoration: BoxDecoration(
-            color: Colors.white.withOpacity(0.2),
-            shape: BoxShape.circle,
-          ),
-          child: Icon(icon, color: Colors.white, size: 20),
-        ),
-      );
-    }
   }
 }
