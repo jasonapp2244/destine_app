@@ -1,10 +1,8 @@
 import 'package:destine_app/constants/colors.dart';
 import 'package:destine_app/constants/paddings.dart';
 import 'package:destine_app/routes/routes.dart';
-import 'package:destine_app/ui/authentication_screens/choose_your_role.dart';
-import 'package:destine_app/ui/authentication_screens/create_your_account.dart';
 import 'package:destine_app/widgets/custom_button.dart';
-import 'package:destine_app/widgets/custom_divider.dart';
+import 'package:destine_app/widgets/custom_or_divider.dart';
 import 'package:destine_app/widgets/custom_radiobutton.dart';
 import 'package:destine_app/widgets/custom_social_icon.dart';
 import 'package:destine_app/widgets/custom_textfield.dart';
@@ -107,6 +105,7 @@ class LoginScreen extends StatelessWidget {
 
   Widget _buildLoginButton() {
     return CustomButton(
+      width: double.infinity,
       text: 'Login',
       onPressed: () {
         Get.toNamed(AppRoutes.chooseRole);

@@ -12,18 +12,20 @@ class SubscriptionScreen extends StatelessWidget {
     return Scaffold(
       appBar: _buildAppBar(context),
       backgroundColor: secondaryColor,
-      body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: horizontalPadding.w),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            SizedBox(height: 93.h),
-            _buildTitleText(),
-            SizedBox(height: 30.h),
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: horizontalPadding.w),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              SizedBox(height: 93.h),
+              _buildTitleText(),
+              SizedBox(height: 30.h),
 
-            CustomPricingCard(),
-          ],
+              CustomPricingCard(),
+            ],
+          ),
         ),
       ),
     );

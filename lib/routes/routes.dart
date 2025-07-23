@@ -4,4 +4,6 @@ abstract class AppRoutes {
   static const chooseRole = '/chooseRole';
   static const subscription = '/subscription';
   static const home = '/home';
+  static const courses = '/courses';
+  static const quizes = '/quizes';
 }

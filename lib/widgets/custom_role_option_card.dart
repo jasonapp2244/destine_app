@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CustomRoleOptionTileCard extends StatelessWidget {
   final String roleName;
@@ -21,24 +22,15 @@ class CustomRoleOptionTileCard extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        height: 46,
-        padding: const EdgeInsets.symmetric(horizontal: 20),
+        height: 46.h,
+        padding: EdgeInsets.symmetric(horizontal: 18.w),
         decoration: BoxDecoration(
           color: Colors.white,
-          borderRadius: BorderRadius.circular(30),
+          borderRadius: BorderRadius.circular(30.r),
           border: Border.all(
             color: isSelected ? primaryColor : Colors.transparent,
-            width: 2,
+            width: 1.w,
           ),
-          boxShadow: isSelected
-              ? [
-                  BoxShadow(
-                    color: primaryColor.withOpacity(0.4),
-                    blurRadius: 8,
-                    offset: const Offset(0, 2),
-                  ),
-                ]
-              : [],
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -47,19 +39,19 @@ class CustomRoleOptionTileCard extends StatelessWidget {
               roleName,
               style: TextStyle(
                 fontWeight: FontWeight.w600,
-                fontSize: 12,
+                fontSize: 12.sp,
                 color: textColor,
               ),
             ),
             if (isSelected)
               Container(
-                height: 20,
-                width: 20,
+                height: 20.h,
+                width: 20.w,
                 decoration: BoxDecoration(
                   color: primaryColor,
                   shape: BoxShape.circle,
                 ),
-                padding: const EdgeInsets.all(4),
+                padding: EdgeInsets.symmetric(horizontal: 4.w, vertical: 4.h),
                 child: const Icon(Icons.check, size: 12, color: Colors.white),
               ),
           ],

@@ -13,8 +13,9 @@ class StatCard extends StatelessWidget {
     return Expanded(
       child: Container(
         width: 116.w,
-        height: 80.h,
+        height: 65.h,
         margin: EdgeInsets.symmetric(horizontal: 5.w),
+        padding: EdgeInsets.symmetric(vertical: 4.h),
 
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(15.r),
@@ -29,18 +30,17 @@ class StatCard extends StatelessWidget {
                 title,
                 style: TextStyle(
                   fontSize: 10.sp,
-                  color: Color(0xff0F1011),
+                  color: textColor,
                   fontWeight: FontWeight.w500,
                 ),
                 textAlign: TextAlign.center,
               ),
-              SizedBox(height: 8.h),
               Text(
                 value,
                 style: TextStyle(
                   fontSize: 25.sp,
                   fontWeight: FontWeight.bold,
-                  color: Colors.black,
+                  color: textColor,
                 ),
                 textAlign: TextAlign.start,
               ),

@@ -4,21 +4,23 @@ import 'dart:ui';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CustomCourseCard extends StatelessWidget {
-  final String sectionTitle;
+  final String? sectionTitle;
   final String courseTitle;
   final String imagePath; // Local asset or network
   final double progress; // From 0.0 to 1.0
   final String buttonText;
   final VoidCallback onTap;
+  bool isList = false;
 
-  const CustomCourseCard({
+  CustomCourseCard({
     super.key,
-    this.sectionTitle = 'Continue Studying',
+    this.sectionTitle = '',
     required this.courseTitle,
     required this.imagePath,
     required this.progress,
     this.buttonText = 'Resume',
     required this.onTap,
+    this.isList = false,
   });
 
   @override
@@ -31,19 +33,37 @@ class CustomCourseCard extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            sectionTitle,
-            style: TextStyle(fontSize: 20.sp, fontWeight: FontWeight.bold),
+          Row(
+            children: [
+              Expanded(
+                child: Text(
+                  sectionTitle ?? '',
+                  style: TextStyle(
+                    fontSize: 15.sp,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+              isList
+                  ? Text(
+                      'See All',
+                      style: TextStyle(
+                        fontSize: 12.sp,
+                        fontWeight: FontWeight.w400,
+                      ),
+                    )
+                  : Text(''),
+            ],
           ),
           SizedBox(height: 12.h),
           Container(
-            padding: const EdgeInsets.all(12),
+            padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 12.h),
             decoration: BoxDecoration(
               color: Colors.white,
-              borderRadius: BorderRadius.circular(16),
+              borderRadius: BorderRadius.circular(16.r),
               boxShadow: [
                 BoxShadow(
-                  color: Colors.black.withOpacity(0.05),
+                  color: textColor.withOpacity(0.05),
                   blurRadius: 8,
                   offset: const Offset(0, 2),
                 ),
@@ -75,7 +95,10 @@ class CustomCourseCard extends StatelessWidget {
                             ), // White with ~30% opacity
                             shape: BoxShape.circle,
                           ),
-                          padding: const EdgeInsets.all(8),
+                          padding: EdgeInsets.symmetric(
+                            horizontal: 8.w,
+                            vertical: 8.h,
+                          ),
                           child: Icon(
                             Icons.play_arrow,
                             size: 30.sp,
@@ -96,7 +119,7 @@ class CustomCourseCard extends StatelessWidget {
                       courseTitle,
                       style: TextStyle(
                         fontSize: 12.sp,
-                        color: Color(0xff0F1011),
+                        color: textColor,
                         fontWeight: FontWeight.w700,
                       ),
                     ),
@@ -135,8 +158,8 @@ class CustomCourseCard extends StatelessWidget {
                           value: progress,
                           minHeight: 6,
                           backgroundColor: Colors.grey.shade300,
-                          valueColor: const AlwaysStoppedAnimation<Color>(
-                            Color(0xFF7B61FF),
+                          valueColor: AlwaysStoppedAnimation<Color>(
+                            primaryColor,
                           ),
                         ),
                       ),
@@ -149,7 +172,6 @@ class CustomCourseCard extends StatelessWidget {
                           fontWeight: FontWeight.w400,
                         ),
                       ),
-                      SizedBox(height: 20.h),
                     ],
                   ),
                 ],

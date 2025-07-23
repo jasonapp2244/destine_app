@@ -1,3 +1,4 @@
+import 'package:destine_app/constants/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
@@ -11,6 +12,7 @@ class CustomRecentQuizCard extends StatelessWidget {
   final Color iconBackgroundColor;
   final Color iconColor;
   final Color arrowColor;
+  final Color firstIconBgColor;
   final bool showTrailingArrow;
   final bool showIcon;
 
@@ -23,6 +25,7 @@ class CustomRecentQuizCard extends StatelessWidget {
     this.iconBackgroundColor = const Color(0xFF7B61FF),
     this.iconColor = Colors.white,
     this.arrowColor = const Color(0xFF7B61FF),
+    this.firstIconBgColor = const Color(0xFF7B61FF),
     this.showTrailingArrow = true,
     this.showIcon = true,
   });
@@ -31,13 +34,13 @@ class CustomRecentQuizCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.symmetric(vertical: 5),
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+      padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 12.h),
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(16),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.03),
+            color: textColor.withOpacity(0.03),
             blurRadius: 6,
             offset: const Offset(0, 2),
           ),
@@ -48,17 +51,18 @@ class CustomRecentQuizCard extends StatelessWidget {
           // Optional leading icon
           if (showIcon)
             Container(
-              width: 42,
-              height: 42,
+              width: 42.w,
+              height: 42.h,
               padding: EdgeInsets.all(11),
               decoration: BoxDecoration(
-                color: iconBackgroundColor,
+                color: firstIconBgColor,
+
                 shape: BoxShape.circle,
               ),
               child: SvgPicture.asset('assets/icons/Star.svg'),
             ),
 
-          if (showIcon) const SizedBox(width: 12),
+          if (showIcon) SizedBox(width: 12.w),
 
           // Title & subtitle
           Expanded(
@@ -69,16 +73,13 @@ class CustomRecentQuizCard extends StatelessWidget {
                   title,
                   style: TextStyle(
                     fontWeight: FontWeight.w700,
-                    fontSize: 14.sp,
+                    fontSize: 12.sp,
                   ),
                 ),
-                const SizedBox(height: 4),
+                SizedBox(height: 4.h),
                 Text(
                   subtitle,
-                  style: const TextStyle(
-                    fontSize: 12,
-                    color: Color(0xff0F1011),
-                  ),
+                  style: TextStyle(fontSize: 12.sp, color: textColor),
                 ),
               ],
             ),
@@ -89,11 +90,13 @@ class CustomRecentQuizCard extends StatelessWidget {
             GestureDetector(
               onTap: onTap,
               child: Container(
-                width: 42,
-                height: 36,
+                width: 42.w, // your desired width
+                height: 36.h, // your desired height
                 decoration: BoxDecoration(
                   color: arrowColor.withOpacity(0.1),
-                  shape: BoxShape.rectangle,
+                  borderRadius: BorderRadius.circular(
+                    20.r,
+                  ), // <- rounded corners
                 ),
                 child: Icon(Icons.arrow_forward, size: 18, color: arrowColor),
               ),

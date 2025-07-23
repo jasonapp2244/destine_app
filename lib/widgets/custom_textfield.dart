@@ -1,7 +1,6 @@
 import 'package:destine_app/constants/colors.dart';
 import 'package:flutter/material.dart';
 
-import 'package:flutter/material.dart';
 
 class CustomTextField extends StatelessWidget {
   final String hintText;

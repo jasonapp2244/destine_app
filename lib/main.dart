@@ -1,10 +1,7 @@
 import 'package:destine_app/routes/apppages.dart';
 import 'package:destine_app/routes/routes.dart';
-import 'package:destine_app/ui/authentication_screens/login_screen.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:destine_app/ui/authentication_screens/login_screen.dart';
 import 'package:get/get.dart';
 
 void main() {

@@ -3,7 +3,7 @@ import 'package:destine_app/constants/paddings.dart';
 import 'package:destine_app/routes/routes.dart';
 import 'package:destine_app/ui/authentication_screens/login_screen.dart';
 import 'package:destine_app/widgets/custom_button.dart';
-import 'package:destine_app/widgets/custom_divider.dart';
+import 'package:destine_app/widgets/custom_or_divider.dart';
 import 'package:destine_app/widgets/custom_radiobutton.dart';
 import 'package:destine_app/widgets/custom_social_icon.dart';
 import 'package:destine_app/widgets/custom_textfield.dart';
@@ -99,6 +99,7 @@ class CreateYourAccountScreen extends StatelessWidget {
 
   Widget _buildSignUpButton() {
     return CustomButton(
+      width: double.infinity,
       text: 'Sign Up',
       onPressed: () {
         Get.toNamed(AppRoutes.home);

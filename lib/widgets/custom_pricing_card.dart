@@ -1,5 +1,7 @@
 import 'package:destine_app/constants/assets.dart';
+import 'package:destine_app/constants/colors.dart';
 import 'package:destine_app/widgets/custom_button.dart';
+import 'package:destine_app/widgets/custom_icon_round.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -8,12 +10,12 @@ class CustomPricingCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 370,
+      width: double.infinity,
 
-      padding: EdgeInsets.all(14),
+      padding: EdgeInsets.symmetric(horizontal: 14.w, vertical: 14.h),
       decoration: BoxDecoration(
         color: Colors.white,
-        borderRadius: BorderRadius.circular(19),
+        borderRadius: BorderRadius.circular(19.r),
         border: Border.all(color: Color(0xFFE3E8FF)),
       ),
       child: Column(
@@ -22,24 +24,14 @@ class CustomPricingCard extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           // Top icon
-          Container(
-            decoration: BoxDecoration(
-              color: Color(0xFFEDEBFF),
-              shape: BoxShape.circle,
-            ),
-            padding: EdgeInsets.all(11),
-            child: SvgPicture.asset(
-              AppImages.diamond,
-              width: 20.w,
-              height: 20.h,
-            ),
-          ),
+          CustomIconCircle(iconAsset: AppImages.diamond, padding: 14),
+
           SizedBox(height: 14.h),
 
           // Title
-          const Text(
+          Text(
             "Unlock Full Access",
-            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+            style: TextStyle(fontSize: 20.sp, fontWeight: FontWeight.w600),
           ),
 
           SizedBox(height: 6.h),
@@ -50,7 +42,7 @@ class CustomPricingCard extends StatelessWidget {
             textAlign: TextAlign.start,
             style: TextStyle(
               fontSize: 14.sp,
-              color: Color(0xff0F1011),
+              color: textColor,
               fontWeight: FontWeight.w400,
             ),
           ),
@@ -59,7 +51,7 @@ class CustomPricingCard extends StatelessWidget {
           // Pricing
           RichText(
             text: TextSpan(
-              style: TextStyle(color: Colors.black),
+              style: TextStyle(color: textColor),
               children: [
                 TextSpan(
                   text: "Just",
@@ -72,20 +64,20 @@ class CustomPricingCard extends StatelessWidget {
                   text: " \$1.99",
                   style: TextStyle(
                     fontSize: 36.sp,
-                    fontWeight: FontWeight.bold,
+                    fontWeight: FontWeight.w700,
                   ),
                 ),
                 TextSpan(
-                  text: "/month",
+                  text: "/ month",
                   style: TextStyle(
-                    fontSize: 16.sp,
-                    fontWeight: FontWeight.w400,
+                    fontSize: 12.sp,
+                    fontWeight: FontWeight.w600,
                   ),
                 ),
               ],
             ),
           ),
-          SizedBox(height: 16.h),
+          SizedBox(height: 14.h),
 
           // Feature list
           Column(
@@ -101,7 +93,11 @@ class CustomPricingCard extends StatelessWidget {
           SizedBox(height: 16.h),
 
           // Button
-          CustomButton(text: 'Subscribe & Continue', onPressed: () {}),
+          CustomButton(
+            width: double.infinity,
+            text: 'Subscribe & Continue',
+            onPressed: () {},
+          ),
         ],
       ),
     );
@@ -120,8 +116,17 @@ class FeatureItem extends StatelessWidget {
       child: Container(
         child: Row(
           children: [
-            const Icon(Icons.check_circle, color: Color(0xFF7B61FF), size: 20),
-            SizedBox(width: 8.w),
+            Container(
+              height: 20.h,
+              width: 20.w,
+              decoration: BoxDecoration(
+                color: primaryColor,
+                shape: BoxShape.circle,
+              ),
+              padding: EdgeInsets.symmetric(horizontal: 4.w),
+              child: const Icon(Icons.check, size: 10, color: Colors.white),
+            ),
+            SizedBox(width: 9.w),
             Expanded(
               child: Text(text, style: TextStyle(fontSize: 14.sp)),
             ),

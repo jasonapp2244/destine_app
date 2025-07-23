@@ -1,4 +1,6 @@
+import 'package:destine_app/constants/colors.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CustomNotificationCard extends StatelessWidget {
   final String text;
@@ -7,6 +9,7 @@ class CustomNotificationCard extends StatelessWidget {
   final IconData icon;
   final Color backgroundColor;
   final Color iconBackgroundColor;
+  final String? title;
 
   const CustomNotificationCard({
     super.key,
@@ -16,6 +19,7 @@ class CustomNotificationCard extends StatelessWidget {
     this.icon = Icons.notifications_none,
     this.backgroundColor = const Color(0xFFF8F8F8),
     this.iconBackgroundColor = Colors.white,
+    this.title,
   });
 
   @override
@@ -34,28 +38,29 @@ class CustomNotificationCard extends StatelessWidget {
             children: [
               Text(
                 text,
-                style: const TextStyle(fontSize: 13, color: Colors.grey),
+                style: TextStyle(fontSize: 12.sp, color: textColor),
               ),
-              const SizedBox(height: 4),
+              SizedBox(height: 4.h),
               Text(
-                '$userName! $emoji',
-                style: const TextStyle(
-                  fontSize: 18,
+                '${title != null && title!.isNotEmpty ? title : userName + emoji}',
+
+                style: TextStyle(
+                  fontSize: 18.sp,
                   fontWeight: FontWeight.bold,
-                  color: Colors.black,
+                  color: textColor,
                 ),
               ),
             ],
           ),
           // Icon section
           Container(
-            width: 40,
-            height: 40,
+            width: 40.w,
+            height: 40.h,
             decoration: BoxDecoration(
               shape: BoxShape.circle,
               color: iconBackgroundColor,
             ),
-            child: Icon(icon, size: 24, color: Colors.black87),
+            child: Icon(icon, size: 24, color: iconColor),
           ),
         ],
       ),

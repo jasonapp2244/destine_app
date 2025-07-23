@@ -29,7 +29,7 @@ class ChooseRoleScreen extends StatelessWidget {
             _buildRoleOptions(),
             Spacer(),
             _buildNextButton(),
-            SizedBox(height: 20),
+            SizedBox(height: 20.h),
           ],
         ),
       ),
@@ -91,7 +91,7 @@ class ChooseRoleScreen extends StatelessWidget {
             textColor: textColor,
           ),
         ),
-        SizedBox(height: 12),
+        SizedBox(height: 12.h),
         Obx(
           () => CustomRoleOptionTileCard(
             roleName: 'Physician Assistant (PA) Student',
@@ -113,6 +113,7 @@ class ChooseRoleScreen extends StatelessWidget {
   /// Next button
   Widget _buildNextButton() {
     return CustomButton(
+      width: double.infinity,
       text: 'Next',
       onPressed: () {
         Get.toNamed(AppRoutes.subscription);

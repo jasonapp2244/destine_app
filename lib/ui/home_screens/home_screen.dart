@@ -1,6 +1,5 @@
 import 'package:destine_app/constants/colors.dart';
 import 'package:destine_app/constants/paddings.dart';
-import 'package:destine_app/widgets/custom_bottom_navigation_bar.dart';
 import 'package:destine_app/widgets/custom_course_card.dart';
 import 'package:destine_app/widgets/custom_notification_card.dart';
 import 'package:destine_app/widgets/custom_recent_quiz_card.dart';
@@ -24,7 +23,7 @@ class HomeScreen extends StatelessWidget {
           ),
           child: Column(
             children: [
-              CustomNotificationCard(userName: 'Sarah!', text: 'Welcome Back'),
+              CustomNotificationCard(userName: 'Sarah !', text: 'Welcome Back'),
               SizedBox(height: 22.h),
               StatsCardContainer(),
               SizedBox(height: 20.h),
@@ -59,8 +58,9 @@ class HomeScreen extends StatelessWidget {
                 title: 'Pharmacology Basics',
                 subtitle: 'Based on your last lesson',
                 icon: 'icons/Star.svg',
-                iconBackgroundColor: primaryColor,
-                arrowColor: Colors.deepPurple,
+                iconBackgroundColor: lightPurple,
+                arrowColor: primaryColor,
+                firstIconBgColor: primaryColor,
                 onTap: () {
                   print('Quiz card tapped');
                 },
@@ -69,14 +69,16 @@ class HomeScreen extends StatelessWidget {
                 title: 'Pharmacology Basics',
                 subtitle: 'Based on your last lesson',
                 icon: 'icons/Star.svg',
-                iconBackgroundColor: primaryColor,
-                arrowColor: Colors.deepPurple,
+                iconBackgroundColor: lightPurple,
+                arrowColor: primaryColor,
+                firstIconBgColor: primaryColor,
                 onTap: () {
                   print('Quiz card tapped');
                 },
               ),
+              SizedBox(height: 20.h),
               CustomCourseCard(
-                sectionTitle: 'Recommended Study Material',
+                sectionTitle: 'My Purchased Courses',
                 courseTitle: 'Cardiovascular System',
                 imagePath: 'images/continuestudying.png',
                 progress: 0.2,
@@ -87,7 +89,6 @@ class HomeScreen extends StatelessWidget {
           ),
         ),
       ),
-      bottomNavigationBar: CustomBottomNavigationBar(),
     );
   }
 }

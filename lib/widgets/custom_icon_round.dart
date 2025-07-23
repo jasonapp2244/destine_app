@@ -20,7 +20,7 @@ class CustomIconCircle extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(color: backgroundColor, shape: BoxShape.circle),
-      padding: EdgeInsets.all(padding),
+      padding: EdgeInsets.symmetric(horizontal: padding.w, vertical: padding.h),
       child: SvgPicture.asset(iconAsset, width: iconSize.w, height: iconSize.h),
     );
   }
