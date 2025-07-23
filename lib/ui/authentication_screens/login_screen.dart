@@ -121,7 +121,7 @@ class LoginScreen extends StatelessWidget {
   Widget _buildSignupPrompt(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Get.toNamed(AppRoutes.chooseRole);
+        Get.toNamed(AppRoutes.signup);
       },
       child: Padding(
         padding: EdgeInsets.only(bottom: 16.h),

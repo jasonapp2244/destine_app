@@ -1,7 +1,7 @@
+import 'package:destine_app/constants/assets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 class SocialIconButton extends StatelessWidget {
   final Widget icon;
@@ -35,7 +35,7 @@ class SocialButtonsRow extends StatelessWidget {
       children: [
         SocialIconButton(
           icon: SvgPicture.asset(
-            'assets/icons/google.svg',
+            AppImages.google,
             width: 20.w, // responsive icon width
             height: 20.h, // responsive icon height
           ),
@@ -43,20 +43,12 @@ class SocialButtonsRow extends StatelessWidget {
         ),
         SizedBox(width: 8.w), // responsive spacing
         SocialIconButton(
-          icon: SvgPicture.asset(
-            'assets/icons/facebook.svg',
-            width: 20.w,
-            height: 20.h,
-          ),
+          icon: SvgPicture.asset(AppImages.facebook, width: 20.w, height: 20.h),
           backgroundColor: Colors.white,
         ),
         SizedBox(width: 8.w),
         SocialIconButton(
-          icon: SvgPicture.asset(
-            'assets/icons/apple.svg',
-            width: 20.w,
-            height: 20.h,
-          ),
+          icon: SvgPicture.asset(AppImages.apple, width: 20.w, height: 20.h),
           backgroundColor: Colors.white,
         ),
       ],

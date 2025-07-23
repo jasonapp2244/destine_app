@@ -1,6 +1,7 @@
 import 'package:destine_app/constants/colors.dart';
 import 'package:destine_app/constants/paddings.dart';
 import 'package:destine_app/controllers/choose_your_role_controller.dart';
+import 'package:destine_app/routes/routes.dart';
 import 'package:destine_app/widgets/custom_button.dart';
 import 'package:destine_app/widgets/custom_role_option_card.dart';
 import 'package:flutter/material.dart';
@@ -114,7 +115,7 @@ class ChooseRoleScreen extends StatelessWidget {
     return CustomButton(
       text: 'Next',
       onPressed: () {
-        // Add navigation or logic here
+        Get.toNamed(AppRoutes.subscription);
       },
     );
   }

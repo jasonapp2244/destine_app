@@ -1,5 +1,6 @@
 import 'package:destine_app/constants/colors.dart';
 import 'package:destine_app/constants/paddings.dart';
+import 'package:destine_app/routes/routes.dart';
 import 'package:destine_app/ui/authentication_screens/login_screen.dart';
 import 'package:destine_app/widgets/custom_button.dart';
 import 'package:destine_app/widgets/custom_divider.dart';
@@ -100,6 +101,7 @@ class CreateYourAccountScreen extends StatelessWidget {
     return CustomButton(
       text: 'Sign Up',
       onPressed: () {
+        Get.toNamed(AppRoutes.home);
         // Handle sign-up logic or navigation
       },
     );
