@@ -27,7 +27,7 @@ class CustomCourseCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final percentWatched = (progress * 100).toInt();
 
-    return Container(
+    return SizedBox(
       width: 370.w,
 
       child: Column(

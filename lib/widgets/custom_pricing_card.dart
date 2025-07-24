@@ -4,9 +4,10 @@ import 'package:destine_app/widgets/custom_button.dart';
 import 'package:destine_app/widgets/custom_icon_round.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 class CustomPricingCard extends StatelessWidget {
+  const CustomPricingCard({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -113,25 +114,23 @@ class FeatureItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.symmetric(vertical: 7.5.h),
-      child: Container(
-        child: Row(
-          children: [
-            Container(
-              height: 20.h,
-              width: 20.w,
-              decoration: BoxDecoration(
-                color: primaryColor,
-                shape: BoxShape.circle,
-              ),
-              padding: EdgeInsets.symmetric(horizontal: 4.w),
-              child: const Icon(Icons.check, size: 10, color: Colors.white),
+      child: Row(
+        children: [
+          Container(
+            height: 20.h,
+            width: 20.w,
+            decoration: BoxDecoration(
+              color: primaryColor,
+              shape: BoxShape.circle,
             ),
-            SizedBox(width: 9.w),
-            Expanded(
-              child: Text(text, style: TextStyle(fontSize: 14.sp)),
-            ),
-          ],
-        ),
+            padding: EdgeInsets.symmetric(horizontal: 4.w),
+            child: const Icon(Icons.check, size: 10, color: Colors.white),
+          ),
+          SizedBox(width: 9.w),
+          Expanded(
+            child: Text(text, style: TextStyle(fontSize: 14.sp)),
+          ),
+        ],
       ),
     );
   }

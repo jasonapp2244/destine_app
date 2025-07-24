@@ -31,16 +31,13 @@ class QuizController extends GetxController {
 
   void startQuiz(int index) {
     // Handle start quiz logic
-    print('Starting quiz at index: $index');
   }
 
   void resumeQuiz(int index) {
     // Handle resume quiz logic
-    print('Resuming quiz at index: $index');
   }
 
   void viewResult(int index) {
     // Handle view result logic
-    print('Viewing result for quiz at index: $index');
   }
 } 

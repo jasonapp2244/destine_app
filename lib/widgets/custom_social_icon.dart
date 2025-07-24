@@ -8,10 +8,10 @@ class SocialIconButton extends StatelessWidget {
   final Color backgroundColor;
 
   const SocialIconButton({
-    Key? key,
+    super.key,
     required this.icon,
     required this.backgroundColor,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -28,6 +28,8 @@ class SocialIconButton extends StatelessWidget {
 }
 
 class SocialButtonsRow extends StatelessWidget {
+  const SocialButtonsRow({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Row(
