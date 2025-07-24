@@ -71,9 +71,15 @@ class CreateYourAccountScreen extends StatelessWidget {
   Widget _buildInputFields() {
     return Column(
       children: const [
-        CustomTextField(hintText: 'Full Name', icon: Icons.person),
-        CustomTextField(hintText: 'Email Address', icon: Icons.email),
-        CustomTextField(hintText: 'Password', icon: Icons.password),
+        CustomTextField(
+          hintText: 'Full Name',
+          iconPath: 'icons/multiple_users.svg',
+        ),
+        CustomTextField(hintText: 'Email Address', iconPath: 'icons/mail.svg'),
+        CustomTextField(
+          hintText: 'Password',
+          iconPath: 'icons/lock_password.svg',
+        ),
       ],
     );
   }
@@ -102,7 +108,7 @@ class CreateYourAccountScreen extends StatelessWidget {
       width: double.infinity,
       text: 'Sign Up',
       onPressed: () {
-        Get.toNamed(AppRoutes.home);
+        Get.toNamed(AppRoutes.profile);
         // Handle sign-up logic or navigation
       },
     );

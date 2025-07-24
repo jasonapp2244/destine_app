@@ -1,11 +1,12 @@
 import 'package:destine_app/constants/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class CustomSearchBarWithFilterCard extends StatelessWidget {
   final bool showFilterIcon;
   final VoidCallback? onFilterTap;
-  
+
   const CustomSearchBarWithFilterCard({
     super.key,
     this.showFilterIcon = true,
@@ -27,8 +28,8 @@ class CustomSearchBarWithFilterCard extends StatelessWidget {
             ),
             child: Row(
               children: [
-                const Icon(Icons.search, color: Colors.black54),
-                const SizedBox(width: 8),
+                SvgPicture.asset('icons/search.svg', width: 20, height: 20),
+                SizedBox(width: 8),
                 Expanded(
                   child: TextField(
                     decoration: const InputDecoration(

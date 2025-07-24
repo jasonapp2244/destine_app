@@ -70,8 +70,11 @@ class LoginScreen extends StatelessWidget {
   Widget _buildInputFields() {
     return Column(
       children: const [
-        CustomTextField(hintText: 'Email Address', icon: Icons.email),
-        CustomTextField(hintText: 'Password', icon: Icons.password),
+        CustomTextField(hintText: 'Email Address', iconPath: 'icons/mail.svg'),
+        CustomTextField(
+          hintText: 'Password',
+          iconPath: 'icons/lock_password.svg',
+        ),
       ],
     );
   }

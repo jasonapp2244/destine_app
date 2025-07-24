@@ -1,16 +1,16 @@
 import 'package:destine_app/constants/colors.dart';
 import 'package:flutter/material.dart';
-
+import 'package:flutter_svg/svg.dart';
 
 class CustomTextField extends StatelessWidget {
   final String hintText;
-  final IconData icon;
+  final String iconPath;
   final bool obscureText;
 
   const CustomTextField({
     Key? key,
     required this.hintText,
-    required this.icon,
+    required this.iconPath,
     this.obscureText = false,
   }) : super(key: key);
 
@@ -29,7 +29,7 @@ class CustomTextField extends StatelessWidget {
       padding: EdgeInsets.symmetric(horizontal: 16),
       child: Row(
         children: [
-          Icon(icon, color: Colors.grey[600], size: 20),
+          SvgPicture.asset(iconPath),
           SizedBox(width: 12),
           Expanded(
             child: TextField(

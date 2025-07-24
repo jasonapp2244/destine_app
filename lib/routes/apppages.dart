@@ -8,6 +8,7 @@ import 'package:destine_app/ui/authentication_screens/subscription_screen.dart';
 import 'package:destine_app/ui/home_screens/courses_screen.dart';
 import 'package:destine_app/ui/home_screens/home_screen.dart';
 import 'package:destine_app/ui/home_screens/quizes_screen.dart';
+import 'package:destine_app/ui/profile_screen.dart';
 
 import 'routes.dart';
 import 'package:get/get.dart';
@@ -33,5 +34,6 @@ class AppPages {
       page: () => QuizesScreen(),
       binding: QuizesBinding(),
     ),
+    GetPage(name: AppRoutes.profile, page: () => ProfileScreen()),
   ];
 }
