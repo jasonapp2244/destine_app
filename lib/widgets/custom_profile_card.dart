@@ -1,5 +1,6 @@
 import 'package:destine_app/constants/colors.dart';
 import 'package:destine_app/constants/paddings.dart';
+import 'package:destine_app/widgets/custom_divider.dart';
 import 'package:destine_app/widgets/custom_icon_round.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -33,23 +34,12 @@ class CustomProfileCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.symmetric(horizontal: horizontalPadding.w),
       padding: EdgeInsets.all(16.w),
       decoration: BoxDecoration(
         color: Colors.white,
-        borderRadius: BorderRadius.circular(16.r),
-        border: Border.all(
-          color: primaryColor.withValues(alpha: 0.3),
-          width: 2,
-          style: BorderStyle.solid,
-        ),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withValues(alpha: 0.05),
-            blurRadius: 10,
-            offset: const Offset(0, 4),
-          ),
-        ],
+        borderRadius: BorderRadius.circular(19.r),
+
+        boxShadow: [],
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -70,7 +60,7 @@ class CustomProfileCard extends StatelessWidget {
                 ),
               ),
               SizedBox(width: 16.w),
-              
+
               // User Info
               Expanded(
                 child: Column(
@@ -98,69 +88,70 @@ class CustomProfileCard extends StatelessWidget {
               ),
             ],
           ),
-          
+
           SizedBox(height: 24.h),
-          
+
           /// Menu Options
           _buildMenuItem(
-            icon: 'icons/globe.svg',
+            icon: 'assets/icons/language.svg',
             title: 'Language',
             onTap: onLanguageTap,
-            iconColor: primaryColor,
+            bgColor: Color(0x7E7E7EFF),
           ),
-          
-          CustomDivider(color: const Color(0xFFE0E0E0)),
-          
+
+          CustomDivider(color: const Color(0x1A000000)),
+
           _buildMenuItem(
-            icon: 'icons/bell.svg',
+            icon: 'assets/icons/notification_outline.svg',
             title: 'Notifications',
             onTap: onNotificationsTap,
-            iconColor: primaryColor,
+            bgColor: Color(0x7E7E7EFF),
           ),
-          
-          CustomDivider(color: const Color(0xFFE0E0E0)),
-          
+
+          CustomDivider(color: const Color(0x1A000000)),
+
           _buildMenuItem(
-            icon: 'icons/credit-card.svg',
+            icon: 'assets/icons/payment_method.svg',
             title: 'Payment Method',
             onTap: onPaymentMethodTap,
-            iconColor: primaryColor,
+            bgColor: Color(0x7E7E7EFF),
           ),
-          
-          CustomDivider(color: const Color(0xFFE0E0E0)),
-          
+
+          CustomDivider(color: const Color(0x1A000000)),
+
           _buildMenuItem(
-            icon: 'icons/lock.svg',
+            icon: 'assets/icons/change_password.svg',
             title: 'Change Password',
             onTap: onChangePasswordTap,
-            iconColor: primaryColor,
+            bgColor: Color(0x7E7E7EFF),
           ),
-          
-          CustomDivider(color: const Color(0xFFE0E0E0)),
-          
+
+          CustomDivider(color: const Color(0x1A000000)),
+
           _buildMenuItem(
-            icon: 'icons/document.svg',
+            icon: 'assets/icons/subscription.svg',
             title: 'Subscription',
             onTap: onSubscriptionTap,
-            iconColor: primaryColor,
+            bgColor: Color(0x7E7E7EFF),
           ),
-          
-          CustomDivider(color: const Color(0xFFE0E0E0)),
-          
+
+          CustomDivider(color: const Color(0x1A000000)),
+
           _buildMenuItem(
-            icon: 'icons/headphones.svg',
+            icon: 'assets/icons/helpanddesk.svg',
             title: 'Help & Support',
             onTap: onHelpSupportTap,
-            iconColor: primaryColor,
+            bgColor: Color(0x7E7E7EFF),
           ),
-          
-          CustomDivider(color: const Color(0xFFE0E0E0)),
-          
+
+          CustomDivider(color: const Color(0x1A000000)),
+
           _buildMenuItem(
-            icon: 'icons/logout.svg',
+            icon: 'assets/icons/logout_outline.svg',
             title: 'Logout',
+
             onTap: onLogoutTap,
-            iconColor: Colors.red,
+            bgColor: Colors.red,
           ),
         ],
       ),
@@ -171,7 +162,7 @@ class CustomProfileCard extends StatelessWidget {
     required String icon,
     required String title,
     required VoidCallback? onTap,
-    required Color iconColor,
+    required Color bgColor,
   }) {
     return InkWell(
       onTap: onTap,
@@ -181,23 +172,23 @@ class CustomProfileCard extends StatelessWidget {
           children: [
             // Icon with circular background
             Container(
-              width: 40.w,
-              height: 40.w,
+              width: 41.w,
+              height: 41.h,
               decoration: BoxDecoration(
-                color: iconColor.withValues(alpha: 0.1),
+                color: bgColor.withValues(alpha: 0.1),
                 shape: BoxShape.circle,
               ),
-                              child: Center(
-                  child: CustomIconCircle(
-                    iconAsset: icon,
-                    backgroundColor: Colors.transparent,
-                    iconSize: 20,
-                  ),
+              child: Center(
+                child: CustomIconCircle(
+                  iconAsset: icon,
+                  backgroundColor: Colors.transparent,
+                  iconSize: 30,
                 ),
+              ),
             ),
-            
+
             SizedBox(width: 16.w),
-            
+
             // Title
             Expanded(
               child: Text(
@@ -209,35 +200,12 @@ class CustomProfileCard extends StatelessWidget {
                 ),
               ),
             ),
-            
+
             // Arrow
-            Icon(
-              Icons.arrow_forward_ios,
-              size: 16.sp,
-              color: textColor,
-            ),
+            Icon(Icons.arrow_forward_ios, size: 16.sp, color: textColor),
           ],
         ),
       ),
     );
   }
 }
-
-class CustomDivider extends StatelessWidget {
-  final Color color;
-  final double height;
-
-  const CustomDivider({
-    super.key,
-    this.color = const Color(0xFFE0E0E0),
-    this.height = 1,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      height: height,
-      color: color,
-    );
-  }
-} 

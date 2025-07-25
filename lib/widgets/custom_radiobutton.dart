@@ -5,8 +5,7 @@ class CustomRadio extends StatelessWidget {
   final bool isSelected;
   final VoidCallback onTap;
 
-  const CustomRadio({Key? key, required this.isSelected, required this.onTap})
-    : super(key: key);
+  const CustomRadio({super.key, required this.isSelected, required this.onTap});
 
   @override
   Widget build(BuildContext context) {

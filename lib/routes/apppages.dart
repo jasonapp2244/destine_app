@@ -1,10 +1,12 @@
 import 'package:destine_app/binding/choose_your_role_binding.dart';
+import 'package:destine_app/binding/course_details_binding.dart';
 import 'package:destine_app/binding/courses_binding.dart';
 import 'package:destine_app/binding/quizes_binding.dart';
 import 'package:destine_app/ui/authentication_screens/choose_your_role.dart';
 import 'package:destine_app/ui/authentication_screens/create_your_account.dart';
 import 'package:destine_app/ui/authentication_screens/login_screen.dart';
 import 'package:destine_app/ui/authentication_screens/subscription_screen.dart';
+import 'package:destine_app/ui/home_screens/course_details_screen.dart';
 import 'package:destine_app/ui/home_screens/courses_screen.dart';
 import 'package:destine_app/ui/home_screens/home_screen.dart';
 import 'package:destine_app/ui/home_screens/quizes_screen.dart';
@@ -35,5 +37,10 @@ class AppPages {
       binding: QuizesBinding(),
     ),
     GetPage(name: AppRoutes.profile, page: () => ProfileScreen()),
+    GetPage(
+      name: AppRoutes.course_detail,
+      page: () => CourseDetailsScreen(),
+      binding: CourseDetailsBinding(),
+    ),
   ];
 }

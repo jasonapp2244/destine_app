@@ -1,3 +1,4 @@
+import 'package:destine_app/constants/assets.dart';
 import 'package:destine_app/constants/colors.dart';
 import 'package:destine_app/constants/paddings.dart';
 import 'package:destine_app/routes/routes.dart';
@@ -73,12 +74,12 @@ class CreateYourAccountScreen extends StatelessWidget {
       children: const [
         CustomTextField(
           hintText: 'Full Name',
-          iconPath: 'icons/multiple_users.svg',
+          iconPath: AppImages.multiple_users,
         ),
-        CustomTextField(hintText: 'Email Address', iconPath: 'icons/mail.svg'),
+        CustomTextField(hintText: 'Email Address', iconPath: AppImages.mail),
         CustomTextField(
           hintText: 'Password',
-          iconPath: 'icons/lock_password.svg',
+          iconPath: AppImages.lock_password,
         ),
       ],
     );

@@ -9,13 +9,13 @@ class CustomRoleOptionTileCard extends StatelessWidget {
   final Color textColor;
 
   const CustomRoleOptionTileCard({
-    Key? key,
+    super.key,
     required this.roleName,
     required this.isSelected,
     required this.onTap,
     required this.primaryColor,
     required this.textColor,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -51,8 +51,10 @@ class CustomRoleOptionTileCard extends StatelessWidget {
                   color: primaryColor,
                   shape: BoxShape.circle,
                 ),
-                padding: EdgeInsets.symmetric(horizontal: 4.w, vertical: 4.h),
-                child: const Icon(Icons.check, size: 12, color: Colors.white),
+                padding: EdgeInsets.symmetric(horizontal: 4.w, vertical: 2.h),
+                child: Center(
+                  child: Icon(Icons.check, size: 12, color: Colors.white),
+                ),
               ),
           ],
         ),

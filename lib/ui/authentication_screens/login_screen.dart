@@ -1,3 +1,4 @@
+import 'package:destine_app/constants/assets.dart';
 import 'package:destine_app/constants/colors.dart';
 import 'package:destine_app/constants/paddings.dart';
 import 'package:destine_app/routes/routes.dart';
@@ -69,11 +70,11 @@ class LoginScreen extends StatelessWidget {
 
   Widget _buildInputFields() {
     return Column(
-      children: const [
-        CustomTextField(hintText: 'Email Address', iconPath: 'icons/mail.svg'),
+      children: [
+        CustomTextField(hintText: 'Email Address', iconPath: AppImages.mail),
         CustomTextField(
           hintText: 'Password',
-          iconPath: 'icons/lock_password.svg',
+          iconPath: AppImages.lock_password,
         ),
       ],
     );
@@ -117,7 +118,7 @@ class LoginScreen extends StatelessWidget {
   }
 
   Widget _buildOrDivider() {
-    return OrDivider(text: 'OR', lineColor: secondaryColor);
+    return OrDivider(text: 'OR', lineColor: dividerColor);
   }
 
   Widget _buildSignupPrompt(BuildContext context) {

@@ -9,13 +9,13 @@ class OrDivider extends StatelessWidget {
   final double spacing;
 
   const OrDivider({
-    Key? key,
+    super.key,
     this.thickness = 1,
     this.lineColor = Colors.grey,
     this.text = 'OR',
     this.textStyle,
     this.spacing = 14,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
