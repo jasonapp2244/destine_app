@@ -46,8 +46,13 @@ class CustomCourseSectionCard extends StatelessWidget {
                         ],
                       ),
                     ),
-
-                    SvgPicture.asset('assets/icons/change_password.svg'),
+                    lesson.type == LessonType.video
+                        ? SvgPicture.asset('assets/icons/change_password.svg')
+                        : Radio(
+                            value: 0,
+                            groupValue: 'doccument',
+                            onChanged: (v) {},
+                          ),
                   ],
                 ),
               ),
