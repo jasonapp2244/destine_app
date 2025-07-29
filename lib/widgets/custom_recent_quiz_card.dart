@@ -58,7 +58,7 @@ class CustomRecentQuizCard extends StatelessWidget {
 
                 shape: BoxShape.circle,
               ),
-              child: SvgPicture.asset('assets/icons/Star.svg'),
+              child: SvgPicture.asset('assets/icons/star.svg'),
             ),
 
           if (showIcon) SizedBox(width: 12.w),

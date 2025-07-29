@@ -107,12 +107,13 @@ class LoginScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildLoginButton() {
+  _buildLoginButton() {
     return CustomButton(
       width: double.infinity,
       text: 'Login',
       onPressed: () {
-        Get.toNamed(AppRoutes.chooseRole);
+        if (true)
+          Get.offAllNamed(AppRoutes.home); // Will show home with bottom nav
       },
     );
   }

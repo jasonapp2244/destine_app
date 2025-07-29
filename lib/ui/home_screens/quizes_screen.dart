@@ -1,6 +1,8 @@
 import 'package:destine_app/constants/colors.dart';
 import 'package:destine_app/constants/paddings.dart';
 import 'package:destine_app/controllers/quiz_controller.dart';
+import 'package:destine_app/routes/routes.dart';
+import 'package:destine_app/widgets/custom_bottom_navigation_bar.dart';
 import 'package:destine_app/widgets/custom_notification_card.dart';
 import 'package:destine_app/widgets/custom_quiz_card.dart';
 import 'package:destine_app/widgets/custom_searchfield_card.dart';
@@ -37,6 +39,9 @@ class QuizesScreen extends StatelessWidget {
           ],
         ),
       ),
+      // bottomNavigationBar: CustomBottomNavigationBar(
+      //   initialRoute: AppRoutes.quizes,
+      // ),
     );
   }
 }

@@ -1,5 +1,6 @@
 import 'package:destine_app/routes/apppages.dart';
 import 'package:destine_app/routes/routes.dart';
+import 'package:destine_app/widgets/custom_bottom_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -28,7 +29,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      initialRoute: AppRoutes.course_detail,
+      initialRoute: AppRoutes.login,
       getPages: AppPages.pages,
     );
   }

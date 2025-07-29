@@ -80,6 +80,7 @@ class ChooseRoleScreen extends StatelessWidget {
       children: [
         Obx(
           () => CustomRoleOptionTileCard(
+            bgColor: primaryColor,
             roleName: 'Nursing Student',
             isSelected:
                 _chooseRoleController.selectedRoleValue.value ==
@@ -94,6 +95,7 @@ class ChooseRoleScreen extends StatelessWidget {
         SizedBox(height: 12.h),
         Obx(
           () => CustomRoleOptionTileCard(
+            bgColor: primaryColor,
             roleName: 'Physician Assistant (PA) Student',
             isSelected:
                 _chooseRoleController.selectedRoleValue.value ==

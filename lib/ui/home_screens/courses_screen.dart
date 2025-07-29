@@ -2,6 +2,8 @@ import 'package:destine_app/constants/assets.dart';
 import 'package:destine_app/constants/colors.dart';
 import 'package:destine_app/constants/paddings.dart';
 import 'package:destine_app/controllers/courses_controller.dart';
+import 'package:destine_app/routes/routes.dart';
+import 'package:destine_app/widgets/custom_bottom_navigation_bar.dart';
 import 'package:destine_app/widgets/custom_category.dart';
 import 'package:destine_app/widgets/custom_course_card.dart';
 import 'package:destine_app/widgets/custom_notification_card.dart';
@@ -36,6 +38,9 @@ class CoursesScreen extends StatelessWidget {
           ),
         ),
       ),
+      // bottomNavigationBar: CustomBottomNavigationBar(
+      //   initialRoute: AppRoutes.courses,
+      // ),
     );
   }
 
@@ -83,7 +88,16 @@ class CoursesScreen extends StatelessWidget {
           imagePath: AppImages.continue_studying,
           progress: 0.2,
           buttonText: 'Enroll Now',
-          onTap: () {},
+          onTap: () {
+            print('Attempting to navigate to course detail...');
+            print('Current route: ${Get.currentRoute}');
+            try {
+              Get.offAndToNamed(AppRoutes.course_detail);
+              print('Navigation successful');
+            } catch (e) {
+              print('Navigation error: $e');
+            }
+          },
         ),
         SizedBox(height: 10.h),
         CustomCourseCard(

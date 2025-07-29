@@ -37,7 +37,7 @@ class CustomQuizCard extends StatelessWidget {
             children: [
               // Icon avatar
               CustomIconCircle(
-                iconAsset: 'icons/star.svg',
+                iconAsset: 'assets/icons/star.svg',
                 backgroundColor: primaryColor,
               ),
               SizedBox(width: 12.w),

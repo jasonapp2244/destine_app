@@ -26,7 +26,7 @@ class CustomNotificationCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: backgroundColor,
+        color: secondaryColor,
         borderRadius: BorderRadius.circular(16),
       ),
       child: Row(

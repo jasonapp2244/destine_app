@@ -1,9 +1,13 @@
 import 'package:destine_app/constants/colors.dart';
 import 'package:destine_app/controllers/course_details_controller.dart';
+import 'package:destine_app/routes/routes.dart';
+import 'package:destine_app/ui/home_screens/quizes_screen.dart';
 import 'package:destine_app/widgets/course_detail_section_card.dart';
 import 'package:destine_app/widgets/custom_course_card.dart';
 import 'package:destine_app/widgets/custom_divider.dart';
+import 'package:destine_app/widgets/custom_headerbar.dart';
 import 'package:destine_app/widgets/custom_icon_round.dart';
+import 'package:destine_app/widgets/custom_progress_bar.dart';
 import 'package:destine_app/widgets/custom_segmented_tab.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -26,7 +30,6 @@ class CourseDetailsScreen extends StatelessWidget {
             Stack(
               clipBehavior: Clip.none,
               children: [
-                // Background Image with bottom border radius
                 ClipRRect(
                   borderRadius: BorderRadius.only(
                     bottomLeft: Radius.circular(20.r),
@@ -37,6 +40,29 @@ class CourseDetailsScreen extends StatelessWidget {
                     width: double.infinity,
                     height: 200.h,
                     fit: BoxFit.cover,
+                  ),
+                ),
+                // CustomHeaderBar OVER the image
+                Positioned(
+                  top: 40.h,
+                  left: 16.w,
+                  right: 16.w,
+                  child: CustomHeaderBar(
+                    title: 'Pharmacology - Drug Types',
+                    onBackTap: () {},
+                    onBookmarkTap: () {},
+                  ),
+                ),
+
+                Positioned(
+                  top: 90.h,
+                  left: 16.w,
+                  right: 16.w,
+                  child: CustomProgressBar(
+                    completedTopics: 5,
+                    totalQuestions: 158,
+                    correctAnswers: 1,
+                    progress: 0.5,
                   ),
                 ),
 
@@ -59,52 +85,54 @@ class CourseDetailsScreen extends StatelessWidget {
 
             // Add space for tab overlap
             SizedBox(height: 32.h),
+            Obx(() {
+              int selectedTab = _courseDetailsController.selectedTabIndex.value;
 
-            CustomDivider(),
-
-            Column(
-              children: [
-                Container(
-                  width: MediaQuery.sizeOf(context).width * 0.8,
-                  height: MediaQuery.sizeOf(context).height * 0.8,
-                  padding: EdgeInsets.all(15),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(18),
-                  ),
-                  child: SingleChildScrollView(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: _courseDetailsController.courseSections.map((
-                        section,
-                      ) {
-                        return CustomCourseSectionCard(
-                          section: section,
-                          onLessonTap: (value) {},
-                        );
-                      }).toList(),
+              return Column(
+                children: [
+                  Container(
+                    width: MediaQuery.sizeOf(context).width * 0.9,
+                    padding: EdgeInsets.symmetric(
+                      horizontal: 15.w,
+                      vertical: 15.h,
+                    ),
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(19),
+                    ),
+                    child: SingleChildScrollView(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: selectedTab == 0
+                            ? _courseDetailsController.courseSections.map((
+                                section,
+                              ) {
+                                return CustomCourseSectionCard(
+                                  section: section,
+                                  onLessonTap: (value) {},
+                                );
+                              }).toList()
+                            : _courseDetailsController.quizSections.map((
+                                section,
+                              ) {
+                                return CustomCourseSectionCard(
+                                  section: section,
+                                  isLastQuiz: section.isLastQuiz,
+                                  onLessonTap: (value) {},
+                                  onPressedQuiz: () {
+                                    print('onPressedQuiz callback called');
+                                    Get.toNamed(AppRoutes.quiz_course);
+                                  },
+                                );
+                              }).toList(),
+                      ),
                     ),
                   ),
-                ),
-              ],
-            ),
+                ],
+              );
+            }),
           ],
         ),
-
-        // Tab content
-        // Expanded(
-        //   child:
-        // Obx(() {
-        //   switch (_courseDetailsController.selectedTabIndex.value) {
-        //     case 0:
-        //       return Container(
-        //       ); // Videos & Docs
-        //     case 1:
-        //       return Container(); // Quiz
-        //     default:
-        //       return Container();
-        //   }
-        // }),
-        // ),
       ),
     );
   }

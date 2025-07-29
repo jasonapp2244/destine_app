@@ -7,6 +7,7 @@ class CustomRoleOptionTileCard extends StatelessWidget {
   final VoidCallback onTap;
   final Color primaryColor;
   final Color textColor;
+  final Color bgColor;
 
   const CustomRoleOptionTileCard({
     super.key,
@@ -15,6 +16,7 @@ class CustomRoleOptionTileCard extends StatelessWidget {
     required this.onTap,
     required this.primaryColor,
     required this.textColor,
+    required this.bgColor,
   });
 
   @override
@@ -25,7 +27,7 @@ class CustomRoleOptionTileCard extends StatelessWidget {
         height: 46.h,
         padding: EdgeInsets.symmetric(horizontal: 18.w),
         decoration: BoxDecoration(
-          color: Colors.white,
+          color: bgColor,
           borderRadius: BorderRadius.circular(30.r),
           border: Border.all(
             color: isSelected ? primaryColor : Colors.transparent,
@@ -56,7 +58,6 @@ class CustomRoleOptionTileCard extends StatelessWidget {
                   child: Icon(Icons.check, size: 12, color: Colors.white),
                 ),
               ),
-              
           ],
         ),
       ),

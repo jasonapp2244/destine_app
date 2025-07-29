@@ -43,7 +43,9 @@ class CustomButton extends StatelessWidget {
             ? Size(width!, height!)
             : null,
       ),
-      child: Text(
+      child:
+      Center(child: 
+       Text(
         text,
         style:
             textStyle ??
@@ -52,7 +54,7 @@ class CustomButton extends StatelessWidget {
               fontWeight: FontWeight.w700,
               fontSize: fontSize ?? 14,
             ),
-      ),
+      ),)
     );
 
     // Wrap with SizedBox if width is double.infinity

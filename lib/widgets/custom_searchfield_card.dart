@@ -28,7 +28,11 @@ class CustomSearchBarWithFilterCard extends StatelessWidget {
             ),
             child: Row(
               children: [
-                SvgPicture.asset('icons/search.svg', width: 20, height: 20),
+                SvgPicture.asset(
+                  'assets/icons/search.svg',
+                  width: 20,
+                  height: 20,
+                ),
                 SizedBox(width: 8),
                 Expanded(
                   child: TextField(

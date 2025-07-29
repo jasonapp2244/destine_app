@@ -1,9 +1,11 @@
 import 'package:destine_app/constants/colors.dart';
 import 'package:destine_app/constants/paddings.dart';
+import 'package:destine_app/routes/routes.dart';
 import 'package:destine_app/widgets/custom_divider.dart';
 import 'package:destine_app/widgets/custom_icon_round.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 
 class CustomProfileCard extends StatelessWidget {
   final String userName;
@@ -95,7 +97,9 @@ class CustomProfileCard extends StatelessWidget {
           _buildMenuItem(
             icon: 'assets/icons/language.svg',
             title: 'Language',
-            onTap: onLanguageTap,
+            onTap: () {
+              Get.toNamed(AppRoutes.langugage);
+            },
             bgColor: Color(0x7E7E7EFF),
           ),
 
@@ -104,8 +108,11 @@ class CustomProfileCard extends StatelessWidget {
           _buildMenuItem(
             icon: 'assets/icons/notification_outline.svg',
             title: 'Notifications',
-            onTap: onNotificationsTap,
+
             bgColor: Color(0x7E7E7EFF),
+            onTap: () {
+              Get.toNamed(AppRoutes.notification);
+            },
           ),
 
           CustomDivider(color: const Color(0x1A000000)),
@@ -164,18 +171,49 @@ class CustomProfileCard extends StatelessWidget {
     required VoidCallback? onTap,
     required Color bgColor,
   }) {
+    final isLogout = title.toLowerCase() == 'logout';
+
+    if (isLogout) {
+      return SizedBox(
+        width: double.infinity,
+        height: 50.h,
+        child: ElevatedButton(
+          onPressed: onTap,
+          style: ElevatedButton.styleFrom(
+            foregroundColor: Colors.white,
+            backgroundColor: Colors.red,
+            padding: EdgeInsets.symmetric(vertical: 14.h),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(12.r),
+            ),
+          ),
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              // Icon (Optional)
+              SizedBox(width: 12.w),
+              Text(
+                'Logout',
+                style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w600),
+              ),
+            ],
+          ),
+        ),
+      );
+    }
+
+    // Default Menu Item
     return InkWell(
       onTap: onTap,
       child: Padding(
         padding: EdgeInsets.symmetric(vertical: 12.h),
         child: Row(
           children: [
-            // Icon with circular background
             Container(
               width: 41.w,
               height: 41.h,
               decoration: BoxDecoration(
-                color: bgColor.withValues(alpha: 0.1),
+                color: bgColor.withOpacity(0.1),
                 shape: BoxShape.circle,
               ),
               child: Center(
@@ -186,10 +224,7 @@ class CustomProfileCard extends StatelessWidget {
                 ),
               ),
             ),
-
             SizedBox(width: 16.w),
-
-            // Title
             Expanded(
               child: Text(
                 title,
@@ -200,8 +235,6 @@ class CustomProfileCard extends StatelessWidget {
                 ),
               ),
             ),
-
-            // Arrow
             Icon(Icons.arrow_forward_ios, size: 16.sp, color: textColor),
           ],
         ),

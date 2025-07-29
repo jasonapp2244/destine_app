@@ -1,12 +1,18 @@
 import 'package:destine_app/routes/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_navigation_bar/responsive_navigation_bar.dart';
+import 'package:get/get.dart';
 
 class CustomBottomNavigationBar extends StatefulWidget {
-  final String initialRoute;
+  final String? initialRoute;
+  final Function(int)? onTabChanged;
 
-  const CustomBottomNavigationBar({Key? key, required this.initialRoute})
-    : super(key: key);
+  const CustomBottomNavigationBar({
+    Key? key, 
+    this.initialRoute,
+    this.onTabChanged,
+  }) : super(key: key);
+
   @override
   State<CustomBottomNavigationBar> createState() =>
       _CustomBottomNavigationBarState();
@@ -14,6 +20,7 @@ class CustomBottomNavigationBar extends StatefulWidget {
 
 class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
   late int _selectedIndex;
+
   static final _routeOrder = [
     AppRoutes.home,
     AppRoutes.courses,
@@ -24,13 +31,21 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
   @override
   void initState() {
     super.initState();
-    _selectedIndex = _routeOrder.indexOf(widget.initialRoute);
+    _selectedIndex = _routeOrder.contains(widget.initialRoute)
+        ? _routeOrder.indexOf(widget.initialRoute ?? '')
+        : 0;
   }
 
   void changeTab(int index) {
-    final route = _routeOrder[index];
-    if (index != _selectedIndex) {
-      Navigator.pushReplacementNamed(context, route);
+    if (index == _selectedIndex) return;
+
+    if (widget.onTabChanged != null) {
+      widget.onTabChanged!(index);
+    } else {
+      final route = _routeOrder[index];
+      print('Navigating to: $route');
+      print('Current route: ${Get.currentRoute}');
+      Get.offNamed(route);
     }
     setState(() => _selectedIndex = index);
   }

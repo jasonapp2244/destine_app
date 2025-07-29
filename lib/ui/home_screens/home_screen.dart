@@ -1,6 +1,8 @@
 import 'package:destine_app/constants/assets.dart';
 import 'package:destine_app/constants/colors.dart';
 import 'package:destine_app/constants/paddings.dart';
+import 'package:destine_app/routes/routes.dart';
+import 'package:destine_app/widgets/custom_bottom_navigation_bar.dart';
 import 'package:destine_app/widgets/custom_course_card.dart';
 import 'package:destine_app/widgets/custom_notification_card.dart';
 import 'package:destine_app/widgets/custom_recent_quiz_card.dart';
@@ -37,6 +39,7 @@ class HomeScreen extends StatelessWidget {
           ),
         ),
       ),
+      // bottomNavigationBar: CustomBottomNavigationBar(initialRoute: AppRoutes.home),
     );
   }
 
@@ -103,8 +106,7 @@ class HomeScreen extends StatelessWidget {
           iconBackgroundColor: lightPurple,
           arrowColor: primaryColor,
           firstIconBgColor: primaryColor,
-          onTap: () {
-          },
+          onTap: () {},
         ),
       ],
     );

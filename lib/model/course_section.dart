@@ -1,27 +1,25 @@
-enum LessonType { video, document }
+enum LessonType { video, document, quiz }
+
 enum LessonStatus { completed, locked, uncompleted }
 
 class CourseSection {
   final String title;
   final List<LessonItem> lessons;
+  bool? isLastQuiz;
 
-  CourseSection({
-    required this.title,
-    required this.lessons,
-  });
+  CourseSection({required this.title, required this.lessons, this.isLastQuiz});
 
   factory CourseSection.fromMap(Map<String, dynamic> map) {
     return CourseSection(
       title: map['title'] ?? '',
-      lessons: List<LessonItem>.from(map['lessons']?.map((x) => LessonItem.fromMap(x)) ?? []),
+      lessons: List<LessonItem>.from(
+        map['lessons']?.map((x) => LessonItem.fromMap(x)) ?? [],
+      ),
     );
   }
 
   Map<String, dynamic> toMap() {
-    return {
-      'title': title,
-      'lessons': lessons.map((x) => x.toMap()).toList(),
-    };
+    return {'title': title, 'lessons': lessons.map((x) => x.toMap()).toList()};
   }
 }
 
@@ -65,4 +63,4 @@ class LessonItem {
       'durationOrSize': durationOrSize,
     };
   }
-} 
+}

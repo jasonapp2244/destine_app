@@ -80,6 +80,35 @@ class CourseDetailsController extends GetxController {
     ),
   ].obs;
 
+  final RxList<CourseSection> quizSections = [
+    CourseSection(
+      title: 'Section 2 - Course Information',
+      isLastQuiz: false,
+      lessons: [
+        LessonItem(
+          title: 'Anatomy of the Heart',
+          subtitle: 'Quiz - 10 questions - 4/5 correct',
+          type: LessonType.quiz,
+          status: LessonStatus.completed,
+          durationOrSize: '3:15 min',
+        ),
+      ],
+    ),
+    CourseSection(
+      title: 'Section 3 - Course Information',
+      isLastQuiz: true,
+      lessons: [
+        LessonItem(
+          title: 'Anatomy of the Heart',
+          subtitle: 'Quiz - 10 questions - 4/5 correct',
+          type: LessonType.quiz,
+          status: LessonStatus.uncompleted,
+          durationOrSize: '4:20 min',
+        ),
+      ],
+    ),
+  ].obs;
+
   void changeTab(int index) {
     selectedTabIndex.value = index;
   }
@@ -88,4 +117,23 @@ class CourseDetailsController extends GetxController {
     print('Lesson tapped: ${lesson.title}');
     // Add navigation logic here
   }
+
+  var isBookmarked = false.obs;
+
+  void toggleBookmark() {
+    isBookmarked.value = !isBookmarked.value;
+  }
+
+  // Tracks which item is selected (you can adapt this based on your use case)
+  var selectedIndex = (-1).obs;
+
+  void toggle(int index) {
+    if (selectedIndex.value == index) {
+      selectedIndex.value = -1; // Deselect if already selected
+    } else {
+      selectedIndex.value = index;
+    }
+  }
+
+  bool isSelected(int index) => selectedIndex.value == index;
 }
