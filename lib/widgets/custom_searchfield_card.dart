@@ -1,3 +1,4 @@
+import 'package:destine_app/constants/assets.dart';
 import 'package:destine_app/constants/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -20,7 +21,7 @@ class CustomSearchBarWithFilterCard extends StatelessWidget {
         Expanded(
           child: Container(
             height: 48,
-            padding: const EdgeInsets.symmetric(horizontal: 8),
+            padding: EdgeInsets.symmetric(horizontal: 16.w),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(30),
               border: Border.all(color: Colors.grey.shade300),
@@ -28,15 +29,12 @@ class CustomSearchBarWithFilterCard extends StatelessWidget {
             ),
             child: Row(
               children: [
-                SvgPicture.asset(
-                  'assets/icons/search.svg',
-                  width: 20,
-                  height: 20,
-                ),
+                SvgPicture.asset(AppImages.search, width: 20, height: 20),
                 SizedBox(width: 8),
                 Expanded(
                   child: TextField(
-                    decoration: const InputDecoration(
+                    decoration: InputDecoration(
+                      contentPadding: EdgeInsets.symmetric(horizontal: 10.w),
                       hintText: 'Search topics...',
                       border: InputBorder.none,
                       isDense: true,
@@ -65,7 +63,7 @@ class CustomSearchBarWithFilterCard extends StatelessWidget {
               child: const Icon(
                 Icons.filter_alt_outlined,
                 color: Colors.white,
-                size: 20,
+                size: 30,
               ),
             ),
           ),

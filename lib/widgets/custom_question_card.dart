@@ -2,6 +2,7 @@ import 'package:destine_app/controllers/quiz_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CustomQuestionCard extends StatelessWidget {
   final QuizController controller = Get.find();
@@ -9,20 +10,41 @@ class CustomQuestionCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(16),
-      child: Obx(
-        () => Column(
+      padding: EdgeInsets.symmetric(horizontal: 10.w),
+      child: Obx(() {
+        // Safety check for valid question index
+        if (controller.currentQuestionIndex.value < 0 || 
+            controller.currentQuestionIndex.value >= controller.questions.length) {
+          print('Invalid question index: ${controller.currentQuestionIndex.value}');
+          return Container(
+            padding: EdgeInsets.all(20.w),
+            child: Center(
+              child: Text(
+                'Loading question...',
+                style: TextStyle(fontSize: 16.sp),
+              ),
+            ),
+          );
+        }
+        
+        // Get current question
+        final currentQuestion =
+            controller.questions[controller.currentQuestionIndex.value];
+        print('Building question card for index: ${controller.currentQuestionIndex.value}');
+        print('Question text: ${currentQuestion.text}');
+
+        return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const SizedBox(height: 12),
-            const Text(
-              "Which valves prevent backflow in the heart?",
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            Text(
+              currentQuestion.text,
+              style: TextStyle(fontSize: 18.sp, fontWeight: FontWeight.w700),
             ),
-            const SizedBox(height: 16),
-            ...List.generate(controller.options.length, (index) {
+            SizedBox(height: 65.h),
+
+            ...List.generate(currentQuestion.options.length, (index) {
               final isSelected = controller.selectedAnswerIndex.value == index;
-              final isCorrect = index == controller.correctAnswerIndex.value;
+              final isCorrect = index == currentQuestion.correctAnswerIndex;
               final isWrong = isSelected && !isCorrect;
 
               Color borderColor = Colors.transparent;
@@ -44,10 +66,10 @@ class CustomQuestionCard extends StatelessWidget {
               return GestureDetector(
                 onTap: () => controller.selectAnswer(index),
                 child: Container(
-                  margin: const EdgeInsets.symmetric(vertical: 6),
+                  margin: const EdgeInsets.symmetric(vertical: 4),
                   padding: const EdgeInsets.symmetric(
                     horizontal: 12,
-                    vertical: 14,
+                    vertical: 10,
                   ),
                   decoration: BoxDecoration(
                     color: fillColor,
@@ -60,7 +82,7 @@ class CustomQuestionCard extends StatelessWidget {
                         String.fromCharCode(65 + index) + ". ",
                         style: const TextStyle(fontWeight: FontWeight.bold),
                       ),
-                      Expanded(child: Text(controller.options[index])),
+                      Expanded(child: Text(currentQuestion.options[index])),
                       if (icon != null) icon,
                     ],
                   ),
@@ -68,8 +90,8 @@ class CustomQuestionCard extends StatelessWidget {
               );
             }),
           ],
-        ),
-      ),
+        );
+      }),
     );
   }
 }

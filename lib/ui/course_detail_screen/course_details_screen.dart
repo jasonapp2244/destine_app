@@ -1,18 +1,13 @@
 import 'package:destine_app/constants/colors.dart';
 import 'package:destine_app/controllers/course_details_controller.dart';
 import 'package:destine_app/routes/routes.dart';
-import 'package:destine_app/ui/home_screens/quizes_screen.dart';
 import 'package:destine_app/widgets/course_detail_section_card.dart';
-import 'package:destine_app/widgets/custom_course_card.dart';
-import 'package:destine_app/widgets/custom_divider.dart';
 import 'package:destine_app/widgets/custom_headerbar.dart';
-import 'package:destine_app/widgets/custom_icon_round.dart';
 import 'package:destine_app/widgets/custom_progress_bar.dart';
 import 'package:destine_app/widgets/custom_segmented_tab.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 class CourseDetailsScreen extends StatelessWidget {
   final _courseDetailsController = Get.find<CourseDetailsController>(
@@ -120,7 +115,6 @@ class CourseDetailsScreen extends StatelessWidget {
                                   isLastQuiz: section.isLastQuiz,
                                   onLessonTap: (value) {},
                                   onPressedQuiz: () {
-                                    print('onPressedQuiz callback called');
                                     Get.toNamed(AppRoutes.quiz_course);
                                   },
                                 );

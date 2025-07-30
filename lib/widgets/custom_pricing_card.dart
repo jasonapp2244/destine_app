@@ -1,9 +1,11 @@
 import 'package:destine_app/constants/assets.dart';
 import 'package:destine_app/constants/colors.dart';
+import 'package:destine_app/routes/routes.dart';
 import 'package:destine_app/widgets/custom_button.dart';
 import 'package:destine_app/widgets/custom_icon_round.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 
 class CustomPricingCard extends StatelessWidget {
   const CustomPricingCard({super.key});
@@ -97,7 +99,9 @@ class CustomPricingCard extends StatelessWidget {
           CustomButton(
             width: double.infinity,
             text: 'Subscribe & Continue',
-            onPressed: () {},
+            onPressed: () {
+              Get.toNamed(AppRoutes.home);
+            },
           ),
         ],
       ),

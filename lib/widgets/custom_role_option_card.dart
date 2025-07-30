@@ -55,7 +55,7 @@ class CustomRoleOptionTileCard extends StatelessWidget {
                 ),
                 padding: EdgeInsets.symmetric(horizontal: 4.w, vertical: 2.h),
                 child: Center(
-                  child: Icon(Icons.check, size: 12, color: Colors.white),
+                  child: Icon(Icons.check, size: 10, color: Colors.white),
                 ),
               ),
           ],

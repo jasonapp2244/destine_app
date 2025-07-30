@@ -1,7 +1,7 @@
 import 'package:destine_app/constants/colors.dart';
+import 'package:destine_app/constants/paddings.dart';
 import 'package:destine_app/widgets/custom_divider.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class NotificationPermission extends StatefulWidget {
@@ -22,22 +22,26 @@ class _NotificationPermissionState extends State<NotificationPermission> {
           "Notifications",
           style: TextStyle(
             color: textColor,
-            fontSize: 28,
+            fontSize: 18.sp,
             fontWeight: FontWeight.bold,
           ),
         ),
       ),
       body: Padding(
-        padding: EdgeInsetsGeometry.symmetric(horizontal: 16.w, vertical: 30.h),
+        padding: EdgeInsetsGeometry.symmetric(
+          horizontal: horizontalPadding.w,
+           vertical: 41.h,
+        ),
         child: Container(
-          padding: EdgeInsets.symmetric(vertical: 16.h, horizontal: 16.w),
+          constraints: BoxConstraints(minHeight: 375.h, maxHeight: 375.h),
+
+          padding: EdgeInsets.symmetric(vertical: 0.h, horizontal: 12.w),
           decoration: BoxDecoration(
             color: Colors.white,
 
-            borderRadius: BorderRadius.circular(19),
+            borderRadius: BorderRadius.circular(19.r),
           ),
           child: Column(
-            spacing: 10,
             children: [
               NotificationTile(text: "Daily Study Reminder"),
               CustomDivider(),
@@ -68,8 +72,6 @@ class _NotificationTileState extends State<NotificationTile> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      // width: ,
-      // height: ,
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Row(
@@ -79,7 +81,7 @@ class _NotificationTileState extends State<NotificationTile> {
               widget.text,
               style: TextStyle(
                 color: textColor,
-                fontSize: 18.sp,
+                fontSize: 12.sp,
                 fontWeight: FontWeight.bold,
               ),
             ),
@@ -102,12 +104,21 @@ class _CustomSwitchState extends State<CustomSwitch> {
   bool isSwitchOn = false;
   @override
   Widget build(BuildContext context) {
-    return Theme(
-      data: ThemeData(useSystemColors: true),
+    return SwitchTheme(
+      data: SwitchThemeData(
+        trackOutlineColor: MaterialStateProperty.all(Colors.transparent),
+
+        thumbColor: MaterialStateProperty.resolveWith<Color>((states) {
+          if (states.contains(MaterialState.selected)) {
+            return primaryColor;
+          }
+          return Colors.white;
+        }),
+        trackColor: MaterialStateProperty.all(Color(0xffEAEAEA)),
+      ),
       child: Switch(
+        splashRadius: 0, // optional: to prevent ripple on tap
         value: isSwitchOn,
-        activeColor: Colors.white,
-        inactiveTrackColor: Color(0xffEAEAEA),
         onChanged: (value) {
           setState(() {
             isSwitchOn = value;

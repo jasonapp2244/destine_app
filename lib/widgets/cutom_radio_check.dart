@@ -1,9 +1,7 @@
 import 'package:destine_app/controllers/course_details_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CustomRadioCircle extends StatelessWidget {
   final int index;

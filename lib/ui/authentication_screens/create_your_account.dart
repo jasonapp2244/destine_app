@@ -1,6 +1,7 @@
 import 'package:destine_app/constants/assets.dart';
 import 'package:destine_app/constants/colors.dart';
 import 'package:destine_app/constants/paddings.dart';
+import 'package:destine_app/controllers/signup_controller.dart';
 import 'package:destine_app/routes/routes.dart';
 import 'package:destine_app/ui/authentication_screens/login_screen.dart';
 import 'package:destine_app/widgets/custom_button.dart';
@@ -13,35 +14,37 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 class CreateYourAccountScreen extends StatelessWidget {
-  const CreateYourAccountScreen({super.key});
+  final SignupController controller = Get.put(SignupController());
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: secondaryColor,
-      body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: horizontalPadding.w),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const Spacer(),
-            _buildTitleText(),
-            SizedBox(height: 4.h),
-            _buildSubtitleText(),
-            SizedBox(height: 20.h),
-            _buildInputFields(),
-            SizedBox(height: 10.h),
-            _buildRememberMeRow(),
-            SizedBox(height: 50.h),
-            _buildSignUpButton(),
-            SizedBox(height: 69.h),
-            _buildOrDivider(),
-            SizedBox(height: 69.h),
-            SocialButtonsRow(),
-            SizedBox(height: 69.h),
-            _buildLoginPrompt(context),
-          ],
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: horizontalPadding.w),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+                 SizedBox(height: 110.h),
+              _buildTitleText(),
+              SizedBox(height: 4.h),
+              _buildSubtitleText(),
+              SizedBox(height: 20.h),
+              _buildInputFields(),
+              SizedBox(height: 10.h),
+              _buildRememberMeRow(),
+              SizedBox(height: 50.h),
+              _buildSignUpButton(),
+              SizedBox(height: 69.h),
+              _buildOrDivider(),
+              SizedBox(height: 69.h),
+              SocialButtonsRow(),
+              SizedBox(height: 69.h),
+              _buildLoginPrompt(context),
+            ],
+          ),
         ),
       ),
     );
@@ -70,37 +73,51 @@ class CreateYourAccountScreen extends StatelessWidget {
   }
 
   Widget _buildInputFields() {
-    return Column(
-      children: const [
-        CustomTextField(
-          hintText: 'Full Name',
-          iconPath: AppImages.multiple_users,
-        ),
-        CustomTextField(hintText: 'Email Address', iconPath: AppImages.mail),
-        CustomTextField(
-          hintText: 'Password',
-          iconPath: AppImages.lock_password,
-        ),
-      ],
+    return Form(
+      key: controller.formKey,
+      child: Column(
+        children: [
+          CustomTextField(
+            hintText: 'Full Name',
+            iconPath: AppImages.multiple_users,
+            controller: controller.fullNameController,
+          ),
+          CustomTextField(
+            hintText: 'Email Address',
+            iconPath: AppImages.mail,
+            controller: controller.emailController,
+          ),
+          CustomTextField(
+            hintText: 'Password',
+            iconPath: AppImages.lock_password,
+            controller: controller.passwordController,
+          ),
+        ],
+      ),
     );
   }
 
   Widget _buildRememberMeRow() {
-    return Row(
-      children: [
-        CustomRadio(isSelected: true, onTap: () {}),
-        SizedBox(width: 8.w),
-        Expanded(
-          child: Text(
-            'Remember Me',
-            style: TextStyle(
-              color: textColor,
-              fontWeight: FontWeight.w700,
-              fontSize: 12.sp,
+    return Obx(
+      () => Row(
+        children: [
+          CustomRadio(
+            isSelected: controller.rememberMe.value,
+            onTap: controller.toggleRememberMe,
+          ),
+          SizedBox(width: 8.w),
+          Expanded(
+            child: Text(
+              'Remember Me',
+              style: TextStyle(
+                color: textColor,
+                fontWeight: FontWeight.w700,
+                fontSize: 12.sp,
+              ),
             ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 
@@ -108,10 +125,7 @@ class CreateYourAccountScreen extends StatelessWidget {
     return CustomButton(
       width: double.infinity,
       text: 'Sign Up',
-      onPressed: () {
-        Get.toNamed(AppRoutes.profile);
-        // Handle sign-up logic or navigation
-      },
+      onPressed: controller.signUp,
     );
   }
 
@@ -134,7 +148,7 @@ class CreateYourAccountScreen extends StatelessWidget {
               child: RichText(
                 text: TextSpan(
                   text: 'Already have an account? ',
-                  style: TextStyle(color: primaryColor, fontSize: 12.sp),
+                  style: TextStyle(color: textColor, fontSize: 12.sp),
                   children: [
                     TextSpan(
                       text: 'login here',

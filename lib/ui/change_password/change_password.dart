@@ -1,196 +1,136 @@
+import 'package:destine_app/constants/assets.dart';
+import 'package:destine_app/constants/colors.dart';
+import 'package:destine_app/constants/paddings.dart';
+import 'package:destine_app/widgets/custom_button.dart';
+import 'package:destine_app/widgets/custom_textfield.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
-// import 'package:jhon/res/colors/app_color.dart';
-// import 'package:jhon/res/components/round_button.dart';
-// import 'package:jhon/res/components/text.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 
-// class ChangePasswordView extends StatelessWidget {
-//   // TextEditingController oldpassword = TextEditingController();
-//   // TextEditingController newPassword = TextEditingController();
-//   // TextEditingController confirmPassword = TextEditingController();
-//   ChangePasswordView({
-//     super.key,
-//     // required this.oldpassword,
+class ChangePasswordScreen extends StatelessWidget {
+  final TextEditingController oldPasswordController = TextEditingController();
+  final TextEditingController newPasswordController = TextEditingController();
+  final TextEditingController confirmPasswordController =
+      TextEditingController();
 
-//     // required this.newPassword,
-//     // required this.confirmPassword,
-//   });
+  ChangePasswordScreen({super.key});
 
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       backgroundColor: AppColor.primeColorb,
-//       appBar: AppBar(
-//         backgroundColor: AppColor.primeColorb,
-//         title: Textwidegt(
-//           text: "Change Password",
-//           color: AppColor.blackColor,
-//           fontsize: 22,
-//           fontWeight: FontWeight.bold,
-//         ),
-//       ),
-//       body: Padding(
-//         padding: const EdgeInsets.symmetric(horizontal: 8.0),
-//         child: Column(
-//           spacing: 10,
-//           children: [
-//             // TextFormField(
-//             //   // controller: oldpassword,
-//             //   cursorColor: AppColor.primeColor,
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: secondaryColor,
+      appBar: AppBar(
+        backgroundColor: secondaryColor,
+        title: Text(
+          "Change Password",
+          style: TextStyle(
+            color: textColor,
+            fontSize: 18.sp,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+      ),
 
-//             //   decoration: InputDecoration(
-//             //     iconColor: AppColor.blackColor,
-//             //     hoverColor: AppColor.primeColorb,
+      body: Padding(
+        padding: EdgeInsets.symmetric(
+          horizontal: horizontalPadding.w,
+          vertical: 41.h,
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              "Your password must be at least six characters and should include a\n"
+              "combination of numbers, letters and special characters (!\$@%)",
+              style: TextStyle(
+                color: textColor,
+                fontSize: 12.sp,
+                fontWeight: FontWeight.w500,
+              ),
+            ),
+            SizedBox(height: 10.h),
 
-//             //     fillColor: AppColor.primeColorb,
-//             //     prefixIcon: Icon(Icons.add_ic_call_outlined),
-//             //     label: Text("Old Password"),
-//             //     focusColor: AppColor.primeColor,
+            // Old Password
+            CustomTextField(
+              controller: oldPasswordController,
+              hintText: 'Old Password',
+              iconPath: AppImages.lock_password,
+              obscureText: true,
+            ),
 
-//             //     enabledBorder: OutlineInputBorder(
-//             //       borderSide: BorderSide(color: AppColor.primeColor),
-//             //     ),
-//             //   ),
-//             // ),
-//             SizedBox(height: 10),
-//             TextFormField(
-//               cursorColor: AppColor.primeColor,
-//               decoration: InputDecoration(
-//                 filled: true,
-//                 fillColor: Colors.white,
-//                 prefix: SvgPicture.asset('assets/icons/lock-password.svg'),
-//                 label: Text("Old Password"),
-//                 labelStyle: TextStyle(color: AppColor.primeColor),
-//                 // Makes the border circular
-//                 border: OutlineInputBorder(
-//                   borderRadius: BorderRadius.circular(
-//                     30.0,
-//                   ), // Adjust for more/less rounding
-//                 ),
-//                 // Enabled (not focused) border
-//                 enabledBorder: OutlineInputBorder(
-//                   borderRadius: BorderRadius.circular(30.0),
-//                   borderSide: BorderSide(
-//                     color: AppColor.whiteColor,
-//                     width: 2.0, // Thicker border
-//                   ),
-//                 ),
-//                 // Focused border
-//                 focusedBorder: OutlineInputBorder(
-//                   borderRadius: BorderRadius.circular(30.0),
-//                   borderSide: BorderSide(
-//                     color: AppColor.whiteColor,
-//                     width: 2.0, // Thicker border when focused
-//                   ),
-//                 ),
-//                 // You can also customize other states
-//                 errorBorder: OutlineInputBorder(
-//                   borderRadius: BorderRadius.circular(30.0),
-//                   borderSide: BorderSide(color: Colors.red, width: 2.0),
-//                 ),
-//                 focusedErrorBorder: OutlineInputBorder(
-//                   borderRadius: BorderRadius.circular(30.0),
-//                   borderSide: BorderSide(color: Colors.red, width: 2.0),
-//                 ),
-//               ),
-//             ),
-//             TextFormField(
-//               cursorColor: AppColor.primeColor,
-//               decoration: InputDecoration(
-//                 filled: true,
-//                 fillColor: Colors.white,
-//                 prefix: SvgPicture.asset(
-//                   "assets/icons/lock-password.svg",
-//                   fit: BoxFit.cover,
-//                 ),
-//                 label: Text("New Password"),
-//                 labelStyle: TextStyle(color: AppColor.primeColor),
-//                 // Makes the border circular
-//                 border: OutlineInputBorder(
-//                   borderRadius: BorderRadius.circular(
-//                     30.0,
-//                   ), // Adjust for more/less rounding
-//                 ),
-//                 // Enabled (not focused) border
-//                 enabledBorder: OutlineInputBorder(
-//                   borderRadius: BorderRadius.circular(30.0),
-//                   borderSide: BorderSide(
-//                     color: AppColor.whiteColor,
-//                     width: 2.0, // Thicker border
-//                   ),
-//                 ),
-//                 // Focused border
-//                 focusedBorder: OutlineInputBorder(
-//                   borderRadius: BorderRadius.circular(30.0),
-//                   borderSide: BorderSide(
-//                     color: AppColor.whiteColor,
-//                     width: 2.0, // Thicker border when focused
-//                   ),
-//                 ),
-//                 // You can also customize other states
-//                 errorBorder: OutlineInputBorder(
-//                   borderRadius: BorderRadius.circular(30.0),
-//                   borderSide: BorderSide(color: Colors.red, width: 2.0),
-//                 ),
-//                 focusedErrorBorder: OutlineInputBorder(
-//                   borderRadius: BorderRadius.circular(30.0),
-//                   borderSide: BorderSide(color: Colors.red, width: 2.0),
-//                 ),
-//               ),
-//             ),
-//             TextFormField(
-//               cursorColor: AppColor.primeColor,
-//               decoration: InputDecoration(
-//                 filled: true,
-//                 fillColor: Colors.white,
-//                 prefix: SvgPicture.asset(
-//                   "assets/icons/lock-password.svg",
-//                   fit: BoxFit.cover,
-//                 ),
-//                 label: Text("Confirm Password"),
-//                 labelStyle: TextStyle(color: AppColor.primeColor),
-//                 // Makes the border circular
-//                 border: OutlineInputBorder(
-//                   borderRadius: BorderRadius.circular(
-//                     30.0,
-//                   ), // Adjust for more/less rounding
-//                 ),
-//                 // Enabled (not focused) border
-//                 enabledBorder: OutlineInputBorder(
-//                   borderRadius: BorderRadius.circular(30.0),
-//                   borderSide: BorderSide(
-//                     color: AppColor.whiteColor,
-//                     width: 2.0, // Thicker border
-//                   ),
-//                 ),
-//                 // Focused border
-//                 focusedBorder: OutlineInputBorder(
-//                   borderRadius: BorderRadius.circular(30.0),
-//                   borderSide: BorderSide(
-//                     color: AppColor.whiteColor,
-//                     width: 2.0, // Thicker border when focused
-//                   ),
-//                 ),
-//                 // You can also customize other states
-//                 errorBorder: OutlineInputBorder(
-//                   borderRadius: BorderRadius.circular(30.0),
-//                   borderSide: BorderSide(color: Colors.red, width: 2.0),
-//                 ),
-//                 focusedErrorBorder: OutlineInputBorder(
-//                   borderRadius: BorderRadius.circular(30.0),
-//                   borderSide: BorderSide(color: Colors.red, width: 2.0),
-//                 ),
-//               ),
-//             ),
-//             RoundButton(
-//               title: "Confirm",
-//               onPress: () {
-//                 Navigator.pop(context);
-//               },
-//             ),
-//           ],
-//         ),
-//       ),
-//     );
-//   }
-// }
+            SizedBox(height: 5.h),
+
+            // New Password
+            CustomTextField(
+              controller: newPasswordController,
+              hintText: 'New Password',
+              iconPath: AppImages.lock_password,
+              obscureText: true,
+            ),
+
+            SizedBox(height: 5.h),
+
+            // Confirm Password
+            CustomTextField(
+              controller: confirmPasswordController,
+              hintText: 'Confirm New Password',
+              iconPath: AppImages.lock_password,
+              obscureText: true,
+            ),
+
+            Spacer(),
+
+            // Save Button
+            CustomButton(
+              width: double.infinity,
+              text: 'Save',
+              onPressed: () {
+                _changePassword();
+              },
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  void _changePassword() {
+    // Validate passwords
+    if (oldPasswordController.text.isEmpty) {
+      Get.snackbar('Error', 'Please enter your old password');
+      return;
+    }
+
+    if (newPasswordController.text.isEmpty) {
+      Get.snackbar('Error', 'Please enter your new password');
+      return;
+    }
+
+    if (newPasswordController.text.length < 6) {
+      Get.snackbar('Error', 'New password must be at least 6 characters');
+      return;
+    }
+
+    if (newPasswordController.text != confirmPasswordController.text) {
+      Get.snackbar('Error', 'Passwords do not match');
+      return;
+    }
+
+    // Here you would typically make an API call to change the password
+    print('Changing password...');
+    print('Old Password: ${oldPasswordController.text}');
+    print('New Password: ${newPasswordController.text}');
+
+    // Show success message
+    Get.snackbar(
+      'Success',
+      'Password changed successfully',
+      snackPosition: SnackPosition.BOTTOM,
+      backgroundColor: Colors.green,
+      colorText: Colors.white,
+    );
+
+    // Navigate back
+    Get.back();
+  }
+}

@@ -1,6 +1,5 @@
 import 'package:destine_app/binding/choose_your_role_binding.dart';
 import 'package:destine_app/binding/course_details_binding.dart';
-import 'package:destine_app/binding/course_quiz_binding.dart';
 import 'package:destine_app/binding/courses_binding.dart';
 import 'package:destine_app/binding/quizes_binding.dart';
 import 'package:destine_app/main_wrapper.dart';
@@ -9,19 +8,24 @@ import 'package:destine_app/ui/authentication_screens/choose_your_role.dart';
 import 'package:destine_app/ui/authentication_screens/create_your_account.dart';
 import 'package:destine_app/ui/authentication_screens/login_screen.dart';
 import 'package:destine_app/ui/authentication_screens/subscription_screen.dart';
-import 'package:destine_app/ui/home_screens/course_details_screen.dart';
-import 'package:destine_app/ui/home_screens/courses_screen.dart';
-import 'package:destine_app/ui/home_screens/home_screen.dart';
-import 'package:destine_app/ui/home_screens/quiz_screen.dart';
-import 'package:destine_app/ui/home_screens/quizes_screen.dart';
+import 'package:destine_app/ui/change_password/change_password.dart';
+import 'package:destine_app/ui/course_detail_screen/course_details_screen.dart';
+import 'package:destine_app/ui/navbar_screens/courses_screen.dart';
+import 'package:destine_app/ui/navbar_screens/home_screen.dart';
+import 'package:destine_app/ui/navbar_screens/quiz_screen.dart';
+import 'package:destine_app/ui/navbar_screens/quizes_screen.dart';
 import 'package:destine_app/ui/notification_screens/notification_screen.dart';
+import 'package:destine_app/ui/payment_screen/payment_screen.dart';
 import 'package:destine_app/ui/profile_screen.dart';
+import 'package:destine_app/ui/splash_screen/splash_screen.dart';
+import 'package:destine_app/ui/support_screen/support_screen.dart';
 
 import 'routes.dart';
 import 'package:get/get.dart';
 
 class AppPages {
   static final pages = [
+    GetPage(name: AppRoutes.splash, page: () => SplashScreen()),
     GetPage(name: AppRoutes.login, page: () => LoginScreen()),
     GetPage(name: AppRoutes.signup, page: () => CreateYourAccountScreen()),
     GetPage(
@@ -69,5 +73,12 @@ class AppPages {
     GetPage(name: AppRoutes.langugage, page: () => LanguageSelectionScreen()),
 
     GetPage(name: AppRoutes.notification, page: () => NotificationPermission()),
+    GetPage(name: AppRoutes.paymentMethod, page: () => PaymentMethodScreen()),
+    GetPage(
+      name: AppRoutes.change_password,
+      page: () => ChangePasswordScreen(),
+    ),
+
+    GetPage(name: AppRoutes.support, page: () => SupportScreen()),
   ];
 }

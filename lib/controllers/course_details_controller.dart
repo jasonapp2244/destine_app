@@ -114,7 +114,6 @@ class CourseDetailsController extends GetxController {
   }
 
   void onLessonTap(LessonItem lesson) {
-    print('Lesson tapped: ${lesson.title}');
     // Add navigation logic here
   }
 

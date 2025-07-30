@@ -31,6 +31,7 @@ class CustomNotificationCard extends StatelessWidget {
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           // Welcome text section
           Column(
@@ -54,8 +55,8 @@ class CustomNotificationCard extends StatelessWidget {
           ),
           // Icon section
           Container(
-            width: 40.w,
-            height: 40.h,
+            width: 46.w,
+            height: 46.h,
             decoration: BoxDecoration(
               shape: BoxShape.circle,
               color: iconBackgroundColor,

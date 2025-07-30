@@ -1,3 +1,4 @@
+import 'package:destine_app/constants/assets.dart';
 import 'package:destine_app/constants/colors.dart';
 import 'package:destine_app/model/quiz.dart';
 import 'package:destine_app/widgets/custom_button.dart';
@@ -37,7 +38,7 @@ class CustomQuizCard extends StatelessWidget {
             children: [
               // Icon avatar
               CustomIconCircle(
-                iconAsset: 'assets/icons/star.svg',
+                iconAsset: AppImages.star,
                 backgroundColor: primaryColor,
               ),
               SizedBox(width: 12.w),
@@ -69,7 +70,7 @@ class CustomQuizCard extends StatelessWidget {
 
               /// Action Button (top right)
               CustomButton(
-                height: 29.h,
+                height: 18.h,
                 width: 90.w,
                 fontSize: 10.sp,
                 textColor: primaryColor,

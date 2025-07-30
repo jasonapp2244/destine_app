@@ -1,6 +1,8 @@
 import 'package:destine_app/model/question_model.dart';
 import 'package:get/get.dart';
 import 'package:destine_app/model/quiz.dart';
+import 'package:destine_app/widgets/custom_quiz_result_popup.dart';
+import 'dart:async';
 
 class QuizController extends GetxController {
   final RxList<Quiz> quizzes = [
@@ -41,33 +43,70 @@ class QuizController extends GetxController {
   void viewResult(int index) {
     // Handle view result logic
   }
-  var currentQuestion = 0.obs;
   var selectedAnswerIndex = (-1).obs;
   var correctAnswerIndex = 0.obs;
   var isAnswered = false.obs;
   var time = 15.obs;
-
-  List<String> options = [
-    "Pharmacology – Drug Types",
-    "Mitral Valve",
-    "Tricuspid Valve",
-    "Pulmonary Valve",
-  ];
+  var correctAnswers = 0.obs;
+  Timer? _timer;
+  final RxInt currentQuestionIndex = 0.obs;
 
   void selectAnswer(int index) {
     if (isAnswered.value) return;
     selectedAnswerIndex.value = index;
     isAnswered.value = true;
+    // Update correct answer index for current question
+    correctAnswerIndex.value =
+        questions[currentQuestionIndex.value].correctAnswerIndex;
+    
+    // Check if answer is correct
+    if (index == questions[currentQuestionIndex.value].correctAnswerIndex) {
+      correctAnswers.value++;
+    }
+  }
+
+  void showQuizResult() {
+    Get.dialog(
+      CustomQuizResultPopup(
+        userName: 'Sarah', // You can make this dynamic
+        correctAnswers: correctAnswers.value,
+        totalQuestions: questions.length,
+        onClose: () {
+          Get.back(); // Close dialog
+          Get.back(); // Go back to previous screen
+        },
+      ),
+    );
   }
 
   void nextQuestion() {
-    selectedAnswerIndex.value = -1;
-    isAnswered.value = false;
-    currentQuestion.value++;
-    time.value = 15; // reset timer
+    print('Current question index: ${currentQuestionIndex.value}');
+    print('Total questions: ${questions.length}');
+
+    if (currentQuestionIndex.value < questions.length - 1) {
+      selectedAnswerIndex.value = -1;
+      isAnswered.value = false;
+      currentQuestionIndex.value++;
+      time.value = 15; // reset timer
+    } else {
+      showQuizResult();
+    }
   }
 
-  final RxInt currentQuestionIndex = 0.obs;
+  void previousQuestion() {
+    print('Previous question - Current index: ${currentQuestionIndex.value}');
+    
+    if (currentQuestionIndex.value > 0) {
+      selectedAnswerIndex.value = -1;
+      isAnswered.value = false;
+      currentQuestionIndex.value--;
+      time.value = 15; // reset timer
+      print('Moved to previous question: ${currentQuestionIndex.value}');
+    } else {
+      print('Already at first question, going back to previous screen');
+      Get.back(); // Go back to previous screen if at first question
+    }
+  }
 
   final List<Question> questions = [
     Question(
@@ -81,23 +120,46 @@ class QuizController extends GetxController {
       correctAnswerIndex: 2,
     ),
     Question(
-      text: "What is the function of the pulmonary valve?",
+      text:
+          "Which chamber of the heart receives oxygenated blood from the lungs?",
       options: [
-        "Regulate oxygen",
-        "Prevent backflow",
-        "Aid digestion",
-        "Produce hormones",
+        "Right Atrium",
+        "Left Atrium",
+        "Right Ventricle",
+        "Left Ventricle",
+      ],
+      correctAnswerIndex: 1,
+    ),
+    Question(
+      text: "Which of the following are functions of the circulatory system?",
+      options: [
+        "Transport nutrients and oxygen",
+        "Regulate body temperature",
+        "Break down food",
+        "Remove waste products",
+      ],
+      correctAnswerIndex: 1,
+    ),
+    Question(
+      text: "The valve that prevents backflow into the left atrium is called?",
+      options: [
+        "Pulmonary Valve",
+        "Aortic Valve",
+        "Tricuspid Valve",
+        "Mitral Valve",
+      ],
+      correctAnswerIndex: 1,
+    ),
+    Question(
+      text: "Which arteries supply blood to the heart muscle itself?",
+      options: [
+        "Pulmonary Arteries",
+        "Coronary Arteries",
+        "Carotid Arteries",
+        "Subclavian Arteries",
       ],
       correctAnswerIndex: 1,
     ),
     // ➕ Add more questions here
   ];
-
-  void goToNextQuestion() {
-    if (currentQuestionIndex.value < questions.length - 1) {
-      currentQuestionIndex.value++;
-      selectedAnswerIndex.value = -1;
-      isAnswered.value = false;
-    }
-  }
 }

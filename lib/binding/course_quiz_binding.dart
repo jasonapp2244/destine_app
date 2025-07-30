@@ -1,4 +1,3 @@
-import 'package:destine_app/controllers/courses_controller.dart';
 import 'package:destine_app/controllers/quiz_controller.dart';
 import 'package:get/get.dart';
 

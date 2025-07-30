@@ -1,3 +1,4 @@
+import 'package:destine_app/constants/assets.dart';
 import 'package:destine_app/constants/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -45,7 +46,10 @@ class CustomRecentQuizCard extends StatelessWidget {
           ),
         ],
       ),
-      child: Row(
+      child:
+      Column(children: [
+        
+       Row(
         children: [
           // Optional leading icon
           if (showIcon)
@@ -58,7 +62,7 @@ class CustomRecentQuizCard extends StatelessWidget {
 
                 shape: BoxShape.circle,
               ),
-              child: SvgPicture.asset('assets/icons/star.svg'),
+              child: SvgPicture.asset(AppImages.star,),
             ),
 
           if (showIcon) SizedBox(width: 12.w),
@@ -102,6 +106,7 @@ class CustomRecentQuizCard extends StatelessWidget {
             ),
         ],
       ),
-    );
+      
+   ]) );
   }
 }

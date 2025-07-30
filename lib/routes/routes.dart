@@ -1,4 +1,5 @@
 abstract class AppRoutes {
+  static const splash = '/splash';
   static const login = '/login';
   static const signup = '/signup';
   static const chooseRole = '/chooseRole';
@@ -11,4 +12,7 @@ abstract class AppRoutes {
   static const quiz_course = '/quiz';
   static const langugage = '/language';
   static const notification = '/notification';
+  static const paymentMethod = '/paymentMethod';
+  static const change_password = '/changePassword';
+  static const support = '/support';
 }

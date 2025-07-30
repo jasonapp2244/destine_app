@@ -1,8 +1,6 @@
 import 'package:destine_app/constants/assets.dart';
 import 'package:destine_app/constants/colors.dart';
 import 'package:destine_app/constants/paddings.dart';
-import 'package:destine_app/routes/routes.dart';
-import 'package:destine_app/widgets/custom_bottom_navigation_bar.dart';
 import 'package:destine_app/widgets/custom_course_card.dart';
 import 'package:destine_app/widgets/custom_notification_card.dart';
 import 'package:destine_app/widgets/custom_recent_quiz_card.dart';
@@ -16,30 +14,44 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: secondaryColor,
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: EdgeInsets.symmetric(
-            horizontal: horizontalPadding.w,
-            vertical: 31,
-          ),
-          child: Column(
-            children: [
-              _buildHeader(),
-              SizedBox(height: 22.h),
-              _buildStatsCard(),
-              SizedBox(height: 20.h),
-              _buildCourseCards(),
-              SizedBox(height: 20.h),
-              _buildRecentQuizzes(),
-              SizedBox(height: 20.h),
-              _buildPurchasedCourses(),
-            ],
+    return SafeArea(
+      child: Scaffold(
+        backgroundColor: secondaryColor,
+        body: SingleChildScrollView(
+          child: Padding(
+            padding: EdgeInsets.symmetric(
+              horizontal: horizontalPadding.w,
+              vertical: 31,
+            ),
+            child: Column(
+              children: [
+                _buildHeader(),
+                SizedBox(height: 22.h),
+                _buildStatsCard(),
+                SizedBox(height: 20.h),
+                _buildCourseCards(),
+                SizedBox(height: 20.h),
+                Row(
+                  children: [
+                    Expanded(
+                      child: Text(
+                        'Recent Quizzes',
+                        style: TextStyle(
+                          fontSize: 15.sp,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                _buildRecentQuizzes(),
+                SizedBox(height: 20.h),
+                _buildPurchasedCourses(),
+              ],
+            ),
           ),
         ),
       ),
-      // bottomNavigationBar: CustomBottomNavigationBar(initialRoute: AppRoutes.home),
     );
   }
 
@@ -55,17 +67,18 @@ class HomeScreen extends StatelessWidget {
     return Column(
       children: [
         CustomCourseCard(
-          courseTitle: 'Course title',
-          sectionTitle: 'Pharmacology Basics',
+          sectionTitle: 'Continue Studying',
+          courseTitle: 'Cardiovascular Anatomy',
+
           imagePath: AppImages.continue_studying,
-          progress: 0.2,
+          progress: 0.45,
           onTap: () {},
         ),
         SizedBox(height: 20.h),
         CustomCourseCard(
           sectionTitle: 'Completed Topics',
           courseTitle: 'Pharmacology Basics',
-          imagePath: AppImages.continue_studying,
+          imagePath: AppImages.pharmo,
           progress: 0.2,
           onTap: () {},
           buttonText: 'Go to Quiz',
@@ -86,6 +99,7 @@ class HomeScreen extends StatelessWidget {
   Widget _buildRecentQuizzes() {
     return Column(
       children: [
+        SizedBox(height: 12.h),
         CustomRecentQuizCard(
           title: 'Pharmacology Basics',
           subtitle: 'Based on your last lesson',
@@ -115,10 +129,10 @@ class HomeScreen extends StatelessWidget {
   Widget _buildPurchasedCourses() {
     return CustomCourseCard(
       sectionTitle: 'My Purchased Courses',
-      courseTitle: 'Cardiovascular System',
-      imagePath: AppImages.continue_studying,
-      progress: 0.2,
-      buttonText: 'Enroll Now',
+      courseTitle: 'Pharmacology Basics',
+      imagePath: AppImages.pharmo,
+      progress: 0.45,
+      buttonText: 'Go to Quiz',
       onTap: () {},
     );
   }

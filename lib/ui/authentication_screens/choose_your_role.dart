@@ -21,7 +21,7 @@ class ChooseRoleScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SizedBox(height: 93.h),
+            SizedBox(height: 110.h),
             _buildTitleText(),
             SizedBox(height: 8.h),
             _buildSubtitleText(),
@@ -80,7 +80,7 @@ class ChooseRoleScreen extends StatelessWidget {
       children: [
         Obx(
           () => CustomRoleOptionTileCard(
-            bgColor: primaryColor,
+            bgColor: Colors.white,
             roleName: 'Nursing Student',
             isSelected:
                 _chooseRoleController.selectedRoleValue.value ==
@@ -95,7 +95,7 @@ class ChooseRoleScreen extends StatelessWidget {
         SizedBox(height: 12.h),
         Obx(
           () => CustomRoleOptionTileCard(
-            bgColor: primaryColor,
+            bgColor: Colors.white,
             roleName: 'Physician Assistant (PA) Student',
             isSelected:
                 _chooseRoleController.selectedRoleValue.value ==

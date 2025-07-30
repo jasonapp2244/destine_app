@@ -1,5 +1,5 @@
 import 'package:destine_app/constants/colors.dart';
-import 'package:destine_app/constants/paddings.dart';
+import 'package:destine_app/constants/assets.dart';
 import 'package:destine_app/routes/routes.dart';
 import 'package:destine_app/widgets/custom_divider.dart';
 import 'package:destine_app/widgets/custom_icon_round.dart';
@@ -95,7 +95,7 @@ class CustomProfileCard extends StatelessWidget {
 
           /// Menu Options
           _buildMenuItem(
-            icon: 'assets/icons/language.svg',
+            icon: AppImages.language,
             title: 'Language',
             onTap: () {
               Get.toNamed(AppRoutes.langugage);
@@ -106,7 +106,7 @@ class CustomProfileCard extends StatelessWidget {
           CustomDivider(color: const Color(0x1A000000)),
 
           _buildMenuItem(
-            icon: 'assets/icons/notification_outline.svg',
+            icon: AppImages.notification_outline,
             title: 'Notifications',
 
             bgColor: Color(0x7E7E7EFF),
@@ -118,7 +118,7 @@ class CustomProfileCard extends StatelessWidget {
           CustomDivider(color: const Color(0x1A000000)),
 
           _buildMenuItem(
-            icon: 'assets/icons/payment_method.svg',
+            icon: AppImages.payment_method,
             title: 'Payment Method',
             onTap: onPaymentMethodTap,
             bgColor: Color(0x7E7E7EFF),
@@ -127,7 +127,7 @@ class CustomProfileCard extends StatelessWidget {
           CustomDivider(color: const Color(0x1A000000)),
 
           _buildMenuItem(
-            icon: 'assets/icons/change_password.svg',
+            icon: AppImages.change_password,
             title: 'Change Password',
             onTap: onChangePasswordTap,
             bgColor: Color(0x7E7E7EFF),
@@ -136,7 +136,7 @@ class CustomProfileCard extends StatelessWidget {
           CustomDivider(color: const Color(0x1A000000)),
 
           _buildMenuItem(
-            icon: 'assets/icons/subscription.svg',
+            icon: AppImages.subscription,
             title: 'Subscription',
             onTap: onSubscriptionTap,
             bgColor: Color(0x7E7E7EFF),
@@ -145,7 +145,7 @@ class CustomProfileCard extends StatelessWidget {
           CustomDivider(color: const Color(0x1A000000)),
 
           _buildMenuItem(
-            icon: 'assets/icons/helpanddesk.svg',
+            icon: AppImages.helpanddesk,
             title: 'Help & Support',
             onTap: onHelpSupportTap,
             bgColor: Color(0x7E7E7EFF),
@@ -154,7 +154,7 @@ class CustomProfileCard extends StatelessWidget {
           CustomDivider(color: const Color(0x1A000000)),
 
           _buildMenuItem(
-            icon: 'assets/icons/logout_outline.svg',
+            icon: AppImages.logout_outline,
             title: 'Logout',
 
             onTap: onLogoutTap,
@@ -210,8 +210,8 @@ class CustomProfileCard extends StatelessWidget {
         child: Row(
           children: [
             Container(
-              width: 41.w,
-              height: 41.h,
+              width: 43.w,
+              height: 43.h,
               decoration: BoxDecoration(
                 color: bgColor.withOpacity(0.1),
                 shape: BoxShape.circle,
@@ -229,8 +229,8 @@ class CustomProfileCard extends StatelessWidget {
               child: Text(
                 title,
                 style: TextStyle(
-                  fontSize: 16.sp,
-                  fontWeight: FontWeight.w500,
+                  fontSize: 12.sp,
+                  fontWeight: FontWeight.w700,
                   color: Colors.black,
                 ),
               ),

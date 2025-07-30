@@ -12,7 +12,7 @@ class CustomIconCircle extends StatelessWidget {
     super.key,
     required this.iconAsset,
     this.backgroundColor = const Color(0xFFEDEBFF),
-    this.iconSize = 24,
+    this.iconSize = 26,
     this.padding = 11,
     this.iconColor,
   });

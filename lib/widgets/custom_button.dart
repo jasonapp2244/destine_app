@@ -5,26 +5,28 @@ class CustomButton extends StatelessWidget {
   final String text;
   final VoidCallback onPressed;
   final Color backgroundColor;
-  final double? width; // Make optional
-  final double? height; // Make optional
+  final double? width;
+  final double? height;
   final double borderRadius;
   final TextStyle? textStyle;
   final double elevation;
   final Color? textColor;
   final double? fontSize;
+  final Widget? suffixIcon; // 👈 NEW PARAM
 
   const CustomButton({
     super.key,
     required this.text,
     required this.onPressed,
     this.backgroundColor = const Color(0xFF7B6EF6),
-    this.width, // now optional
-    this.height, // now optional
+    this.width,
+    this.height,
     this.borderRadius = 24,
     this.textStyle,
     this.elevation = 0,
     this.textColor,
     this.fontSize,
+    this.suffixIcon, // 👈 include in constructor
   });
 
   @override
@@ -38,26 +40,33 @@ class CustomButton extends StatelessWidget {
           borderRadius: BorderRadius.circular(borderRadius),
         ),
         elevation: elevation,
-        // Only set fixedSize if width and height are provided and not infinity
         fixedSize: (width != null && height != null && width != double.infinity)
             ? Size(width!, height!)
             : null,
       ),
-      child:
-      Center(child: 
-       Text(
-        text,
-        style:
-            textStyle ??
-            TextStyle(
-              color: textColor ?? Colors.white,
-              fontWeight: FontWeight.w700,
-              fontSize: fontSize ?? 14,
-            ),
-      ),)
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          if (suffixIcon != null) ...[
+            SizedBox(width: 8.w),
+            suffixIcon!, // 👈 suffix icon widget
+          ],
+          SizedBox(width: 10.w),
+          Text(
+            text,
+            style:
+                textStyle ??
+                TextStyle(
+                  color: textColor ?? Colors.white,
+                  fontWeight: FontWeight.w700,
+                  fontSize: fontSize ?? 14,
+                ),
+          ),
+        ],
+      ),
     );
 
-    // Wrap with SizedBox if width is double.infinity
     if (width == double.infinity) {
       return SizedBox(width: double.infinity, height: height, child: button);
     }

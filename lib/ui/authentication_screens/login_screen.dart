@@ -17,30 +17,35 @@ class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: true, // 👈 important!
       backgroundColor: secondaryColor,
-      body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: horizontalPadding.w),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const Spacer(),
-            _buildHeaderText(),
-            SizedBox(height: 4.h),
-            _buildSubHeaderText(),
-            SizedBox(height: 20.h),
-            _buildInputFields(),
-            SizedBox(height: 10.h),
-            _buildRememberMeAndForgot(),
-            SizedBox(height: 50.h),
-            _buildLoginButton(),
-            SizedBox(height: 69.h),
-            _buildOrDivider(),
-            SizedBox(height: 69.h),
-            SocialButtonsRow(),
-            SizedBox(height: 69.h),
-            _buildSignupPrompt(context),
-          ],
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: horizontalPadding.w),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                   SizedBox(height: 110.h), // Add some top padding instead of Spacer
+                _buildHeaderText(),
+                SizedBox(height: 4.h),
+                _buildSubHeaderText(),
+                SizedBox(height: 20.h),
+                _buildInputFields(),
+                SizedBox(height: 10.h),
+                _buildRememberMeAndForgot(),
+                SizedBox(height: 50.h),
+                _buildLoginButton(),
+                SizedBox(height: 69.h),
+                _buildOrDivider(),
+                SizedBox(height: 69.h),
+                SocialButtonsRow(),
+                SizedBox(height: 69.h),
+                _buildSignupPrompt(context),
+              ],
+            ),
+          ),
         ),
       ),
     );
@@ -113,7 +118,9 @@ class LoginScreen extends StatelessWidget {
       text: 'Login',
       onPressed: () {
         if (true)
-          Get.offAllNamed(AppRoutes.home); // Will show home with bottom nav
+          Get.offAllNamed(
+            AppRoutes.chooseRole,
+          ); // Will show home with bottom nav
       },
     );
   }

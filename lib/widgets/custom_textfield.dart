@@ -1,17 +1,28 @@
 import 'package:destine_app/constants/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CustomTextField extends StatelessWidget {
   final String hintText;
-  final String iconPath;
+  final String? iconPath;
   final bool obscureText;
-
-  const CustomTextField({
+  final TextEditingController? controller;
+  final String? Function(String?)? validator;
+  final bool isPassword;
+  final bool isPasswordVisible;
+  final VoidCallback? onTogglePassword;
+  
+  CustomTextField({
     super.key,
     required this.hintText,
-    required this.iconPath,
+    this.iconPath,
     this.obscureText = false,
+    this.controller,
+    this.validator,
+    this.isPassword = false,
+    this.isPasswordVisible = false,
+    this.onTogglePassword,
   });
 
   @override
@@ -26,14 +37,17 @@ class CustomTextField extends StatelessWidget {
           // ✅ Shadow added here
         ],
       ),
-      padding: EdgeInsets.symmetric(horizontal: 16),
+      padding: EdgeInsets.symmetric(horizontal: 16.w),
       child: Row(
         children: [
-          SvgPicture.asset(iconPath),
-          SizedBox(width: 12),
+          if (iconPath != null) ...[
+            SvgPicture.asset(iconPath!),
+            SizedBox(width: 12),
+          ],
           Expanded(
             child: TextField(
-              obscureText: obscureText,
+              controller: controller,
+              obscureText: isPassword ? !isPasswordVisible : obscureText,
               style: TextStyle(fontSize: 14),
               decoration: InputDecoration(
                 hintText: hintText,
@@ -41,6 +55,15 @@ class CustomTextField extends StatelessWidget {
                 border: InputBorder.none,
                 isCollapsed: true,
                 contentPadding: EdgeInsets.zero,
+                suffixIcon: isPassword && onTogglePassword != null
+                    ? IconButton(
+                        icon: Icon(
+                          isPasswordVisible ? Icons.visibility : Icons.visibility_off,
+                          color: textColor,
+                        ),
+                        onPressed: onTogglePassword,
+                      )
+                    : null,
               ),
             ),
           ),

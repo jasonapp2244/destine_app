@@ -19,7 +19,7 @@ class SubscriptionScreen extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SizedBox(height: 93.h),
+              SizedBox(height: 110.h),
               _buildTitleText(),
               SizedBox(height: 30.h),
 
